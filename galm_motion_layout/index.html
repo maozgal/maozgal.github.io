@@ -1,0 +1,353 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Some MotionLayout Crafts</title>
+  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../elements/codelab.html">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <style is="custom-style">
+    body {
+      font-family: "Roboto",sans-serif;
+      background: var(--google-codelab-background, #F8F9FA);
+    }
+  </style>
+  
+</head>
+<body unresolved class="fullbleed">
+
+  <google-codelab title="Some MotionLayout Crafts"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="1">
+        <p>This tutorial will walk you through the way of creating your first  MotionLayout steps. In this tutorial you will do the following, using MotionLayout:</p>
+<ul>
+<li>Basic animation.</li>
+<li>Apply the newly created style<br>Prerequesites</li>
+<li>API key</li>
+<li>Npm and Node.js<br>We recommend you to have npm and Node.js already installed on your machine to quickly boot up a http server.</li>
+</ul>
+<aside class="special"><p>Note : MotionLayout is fully declarative. therefore, we will not use any code for animate</p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Setup Your Environment" duration="1">
+        <p>In this step, you will download the code for the entire codelab and then run a simple example app.</p>
+<p>Click the following button to download the source code for this codelab:<br>  <a href="https://github.com/maozgal/MotionLayout/archive/master.zip" target="_blank">Download SDK</a></p>
+<ul>
+<li>Unzip the code, and then open the project.</li>
+<li>Run the app <img style="max-width: 100.00px" src="img/b5a3122e7e62d6db.png"></li>
+</ul>
+<p>The app will display a crazy Emoji and two bottons. you should see something like this:</p>
+<p><img style="max-width: 250.00px" src="img/788fd678a4d85c2f.png"></p>
+<p>Feel free to visit us on GitHub.<br>The first phase is on the <a href="https://github.com/maozgal/MotionLayout/tree/master" target="_blank">master</a> branch<br>The whole solution can be found on <a href="https://github.com/maozgal/MotionLayout/tree/solution" target="_blank">solution</a> branch.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Basic Animation" duration="1">
+        <p>First thing we want to do is to denote the layout that we want to take control of several of it&#39;s view.</p>
+<p>This is being done by adding layoutDescription parameter to the root view, which just points to the file where the animations are being described.</p>
+<ul>
+<li>Go to res -&gt; <code>activity_main.xml</code>, and add the following line into your MotionLayout root view :</li>
+</ul>
+<pre><code>    app:layoutDescription=&#34;@xml/scene_01&#34;
+</code></pre>
+<p>The view should be looking new like this :</p>
+<pre><code>&lt;android.support.constraint.motion.MotionLayout
+    xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;
+    xmlns:app=&#34;http://schemas.android.com/apk/res-auto&#34;
+    xmlns:tools=&#34;http://schemas.android.com/tools&#34;
+    android:id=&#34;@+id/motionLayout_container&#34;
+    android:background=&#34;#ffffff&#34;
+    android:layout_width=&#34;match_parent&#34;
+    android:layout_height=&#34;match_parent&#34;
+    app:layoutDescription=&#34;@xml/scene_01&#34;
+    tools:context=&#34;.MainActivity&#34;&gt;
+</code></pre>
+<p>Next step is to create the scene_01 file.</p>
+<ul>
+<li>Create <code>xml</code> folder under res.<br><img src="img/2a9c972731328abf.png"></li>
+<li>Create <code>scene_01.xml</code> file inside res -&gt; xml.</li>
+<li>Copy the following content inside your <code>scene_01.xml</code> file:<pre><code>&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
+&lt;MotionScene
+    xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;
+    xmlns:motion=&#34;http://schemas.android.com/apk/res-auto&#34;&gt;
+
+    &lt;Transition
+        motion:constraintSetEnd=&#34;@+id/end&#34;
+        motion:constraintSetStart=&#34;@+id/start&#34;
+        motion:duration=&#34;1000&#34;&gt;
+    &lt;/Transition&gt;
+
+    &lt;ConstraintSet android:id=&#34;@+id/start&#34;&gt;
+    &lt;/ConstraintSet&gt;
+
+    &lt;ConstraintSet android:id=&#34;@+id/end&#34;&gt;
+    &lt;/ConstraintSet&gt;
+
+&lt;/MotionScene&gt;
+</code></pre>
+</li>
+</ul>
+<p>Explaination:<br>In order to take control of an animation, we need to define a <code>MotionScene</code>.<br>MotionScene is describing the animation. in our case we will make a tranistion from point A to point B on the screen, with a duration of 1 second.</p>
+<p>Each point is a <code>ConstraintSet</code>.<br>The animation will start at <code>@+id/start</code>, and end at <code>@+id/start</code>.</p>
+<ul>
+<li>Copy the following content inside <code>@+id/start</code>:<pre><code>&lt;Constraint
+        android:id=&#34;@+id/main_iv&#34;
+        android:layout_width=&#34;180dp&#34;
+        android:layout_height=&#34;180dp&#34;
+        android:layout_marginStart=&#34;8dp&#34;
+        motion:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+        motion:layout_constraintStart_toStartOf=&#34;parent&#34;
+        motion:layout_constraintTop_toTopOf=&#34;parent&#34;/&gt;
+</code></pre>
+</li>
+<li>Copy the following content inside <code>@+id/end</code>:<pre><code>&lt;Constraint
+        android:id=&#34;@+id/main_iv&#34;
+        android:layout_width=&#34;180dp&#34;
+        android:layout_height=&#34;180dp&#34;
+        android:layout_marginEnd=&#34;8dp&#34;
+        motion:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+        motion:layout_constraintEnd_toEndOf=&#34;parent&#34;
+        motion:layout_constraintTop_toTopOf=&#34;parent&#34;/&gt;
+</code></pre>
+</li>
+</ul>
+<p>your <code>scene_01.xml</code> file should look like:</p>
+<pre><code> &lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
+&lt;MotionScene
+    xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;
+    xmlns:motion=&#34;http://schemas.android.com/apk/res-auto&#34;&gt;
+
+    &lt;Transition
+        motion:constraintSetEnd=&#34;@+id/end&#34;
+        motion:constraintSetStart=&#34;@+id/start&#34;
+        motion:duration=&#34;1000&#34;&gt;
+
+    &lt;/Transition&gt;
+
+
+    &lt;ConstraintSet android:id=&#34;@+id/start&#34;&gt;
+        &lt;Constraint
+            android:id=&#34;@+id/main_iv&#34;
+            android:layout_width=&#34;180dp&#34;
+            android:layout_height=&#34;180dp&#34;
+            android:layout_marginStart=&#34;8dp&#34;
+            motion:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+            motion:layout_constraintStart_toStartOf=&#34;parent&#34;
+            motion:layout_constraintTop_toTopOf=&#34;parent&#34;/&gt;
+    &lt;/ConstraintSet&gt;
+
+    &lt;ConstraintSet android:id=&#34;@+id/end&#34;&gt;
+        &lt;Constraint
+            android:id=&#34;@+id/main_iv&#34;
+            android:layout_width=&#34;180dp&#34;
+            android:layout_height=&#34;180dp&#34;
+            android:layout_marginEnd=&#34;8dp&#34;
+            motion:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+            motion:layout_constraintEnd_toEndOf=&#34;parent&#34;
+            motion:layout_constraintTop_toTopOf=&#34;parent&#34;/&gt;
+    &lt;/ConstraintSet&gt;
+
+&lt;/MotionScene&gt;
+</code></pre>
+<p>Explaination:<br>Take a look at the <code>&lt;Constraint&gt;</code> of <code>@+id/start</code> ConstraintSet,</p>
+<ul>
+<li>We define the view on which we will want the animation to affect(<code>@+id/main_iv</code>).</li>
+<li>Next, we will define it&#39;s constraints. These constraints will be affect imidiitlly, as a start stage. The current constaints are centering the view vertically and attach it to the left.</li>
+</ul>
+<p>The constaints in <code>@+id/end</code> are the same. only difference is attaching the view to the right.</p>
+<ul>
+<li>Go to src -&gt; <code>MainActivity.java</code>.</li>
+<li>Add the following line of code into animateToEndButton&#39;s onClick call back:</li>
+</ul>
+<pre><code>mMotionLayout.transitionToEnd();
+</code></pre>
+<ul>
+<li>Add the following line of code into animateToStartButton&#39;s onClick call back:</li>
+</ul>
+<pre><code>mMotionLayout.transitionToStart();
+</code></pre>
+<p>This should look like:</p>
+<pre><code>    animateToEndButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMotionLayout.transitionToEnd();
+            }
+        });
+
+        animateToStartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMotionLayout.transitionToStart();
+            }
+        });
+</code></pre>
+<p>Try and run your app now.<br>You should be able to animate the view back and forth by clicking the buttons.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Attributes" duration="1">
+        <p>Click the following button to download the source code for this codelab:<br>  <a href="https://github.com/maozgal/MotionLayout/archive/attributes.zip" target="_blank">Download SDK</a></p>
+<ul>
+<li>Unzip the code, and then open the project.</li>
+<li>Run the app <img style="max-width: 100.00px" src="img/b5a3122e7e62d6db.png"></li>
+</ul>
+<p>The app you should be looking like this:</p>
+<p><img style="max-width: 250.00px" src="img/f5cedd772bbafaf2.png"></p>
+<p>Pay attention to the following changes.</p>
+<ol type="1">
+<li>We are using a View instade of an ImageView in MainActivity.xml.</li>
+</ol>
+<pre><code> &lt;View
+        android:id=&#34;@+id/main_iv&#34;
+        android:layout_width=&#34;64dp&#34;
+        android:layout_height=&#34;64dp&#34;
+        android:background=&#34;@color/colorAccent&#34;
+        /&gt;
+</code></pre>
+<ol type="1">
+<li>We created a new scene file : scene_02.xml.</li>
+<li>We changed the refernce layoutDescription to point on @xml/scene_02 :</li>
+</ol>
+<pre><code>app:layoutDescription=&#34;@xml/scene_02&#34;
+</code></pre>
+<ol type="1">
+<li>In scene_02.xml we constrainted our view to center horizontal + bottom at start, and center horizontal + top at the end of the animation.</li>
+</ol>
+<pre><code>&lt;ConstraintSet android:id=&#34;@+id/start&#34;&gt;
+        &lt;Constraint
+            android:id=&#34;@+id/main_iv&#34;
+            android:layout_width=&#34;64dp&#34;
+            android:layout_height=&#34;64dp&#34;
+            android:layout_marginBottom=&#34;8dp&#34;
+            motion:layout_constraintBottom_toTopOf=&#34;@+id/animate_to_start_bt&#34;
+            motion:layout_constraintStart_toStartOf=&#34;parent&#34;
+            motion:layout_constraintEnd_toEndOf=&#34;parent&#34;/&gt;
+    &lt;/ConstraintSet&gt;
+
+    &lt;ConstraintSet android:id=&#34;@+id/end&#34;&gt;
+        &lt;Constraint
+            android:id=&#34;@+id/main_iv&#34;
+            android:layout_width=&#34;64dp&#34;
+            android:layout_height=&#34;64dp&#34;
+            android:layout_marginTop=&#34;8dp&#34;
+            motion:layout_constraintStart_toStartOf=&#34;parent&#34;
+            motion:layout_constraintEnd_toEndOf=&#34;parent&#34;
+            motion:layout_constraintTop_toTopOf=&#34;parent&#34;/&gt;
+    &lt;/ConstraintSet&gt;
+</code></pre>
+<p>Give it a shot by playing with the buttons.</p>
+<p>We will go over some attributes that can be changed during the animation.</p>
+<ul>
+<li>Changing size:<br>Change layout_height of the end <code>ConstraintSet</code> to 164dp</li>
+</ul>
+<pre><code>android:layout_height=&#34;164dp&#34;
+</code></pre>
+<p>Try up your app now.</p>
+<ul>
+<li>Alpha :<ul>
+<li>Add the following <code>CustomAttribute</code> into your start <code>Constraint</code><pre><code>android:alpha=&#34;1.0&#34;
+</code></pre>
+</li>
+<li>Add the following <code>CustomAttribute</code> into your end <code>Constraint</code><pre><code>android:alpha=&#34;0.5&#34;
+</code></pre>
+Try up your app now.</li>
+</ul>
+</li>
+<li>Rotation :<ul>
+<li>Add the following <code>CustomAttribute</code> into your start <code>Constraint</code><pre><code>android:rotation=&#34;0.0&#34;
+</code></pre>
+</li>
+<li>Add the following <code>CustomAttribute</code> into your end <code>Constraint</code><pre><code>android:rotation=&#34;-720&#34;
+</code></pre>
+Try up your app now.</li>
+</ul>
+</li>
+<li>Translation :<ul>
+<li>Add the following <code>CustomAttribute</code> into your start <code>Constraint</code><pre><code>android:translationX=&#34;0dp&#34;
+</code></pre>
+</li>
+<li>Add the following <code>CustomAttribute</code> into your end <code>Constraint</code><pre><code>android:translationX=&#34;100dp&#34;
+</code></pre>
+Try up your app now.</li>
+</ul>
+</li>
+<li>Changing color:<br>You will need  to add a <code>CustomAttribute</code> into your <code>Constraint</code>, both the start and the end:</li>
+</ul>
+<pre><code>&lt;ConstraintSet android:id=&#34;@+id/start&#34;&gt;
+    &lt;Constraint
+        android:id=&#34;@+id/main_iv&#34;
+        android:layout_width=&#34;64dp&#34;
+        android:layout_height=&#34;64dp&#34;
+        android:layout_marginBottom=&#34;8dp&#34;
+        motion:layout_constraintBottom_toTopOf=&#34;@+id/animate_to_start_bt&#34;
+        motion:layout_constraintEnd_toEndOf=&#34;parent&#34;
+        motion:layout_constraintStart_toStartOf=&#34;parent&#34;&gt;
+        &lt;CustomAttribute
+            motion:attributeName=&#34;backgroundColor&#34;
+            motion:customColorValue=&#34;#00ff00&#34; /&gt;
+    &lt;/Constraint&gt;
+&lt;/ConstraintSet&gt;
+
+&lt;ConstraintSet android:id=&#34;@+id/end&#34;&gt;
+    &lt;Constraint
+        android:id=&#34;@+id/main_iv&#34;
+        android:layout_width=&#34;64dp&#34;
+        android:layout_height=&#34;164dp&#34;
+        android:layout_marginTop=&#34;8dp&#34;
+        motion:layout_constraintEnd_toEndOf=&#34;parent&#34;
+        motion:layout_constraintStart_toStartOf=&#34;parent&#34;
+        motion:layout_constraintTop_toTopOf=&#34;parent&#34;&gt;
+        &lt;CustomAttribute
+            motion:attributeName=&#34;backgroundColor&#34;
+            motion:customColorValue=&#34;#ff0000&#34; /&gt;
+    &lt;/Constraint&gt;
+&lt;/ConstraintSet&gt;
+</code></pre>
+<p><strong>Try up your app now.</strong></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-49880327-14', 'auto');
+
+    (function() {
+      var gaCodelab = '';
+      if (gaCodelab) {
+        ga('create', gaCodelab, 'auto', {name: 'codelab'});
+      }
+
+      var gaView;
+      var parts = location.search.substring(1).split('&');
+      for (var i = 0; i < parts.length; i++) {
+        var param = parts[i].split('=');
+        if (param[0] === 'viewga') {
+          gaView = param[1];
+          break;
+        }
+      }
+      if (gaView && gaView !== gaCodelab) {
+        ga('create', gaView, 'auto', {name: 'view'});
+      }
+    })();
+  </script>
+
+</body>
+</html>

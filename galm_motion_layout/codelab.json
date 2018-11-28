@@ -1,0 +1,22 @@
+{
+  "environment": "web",
+  "source": "motion_layout.md",
+  "format": "html",
+  "prefix": "../../",
+  "mainga": "UA-49880327-14",
+  "updated": "2018-11-28T23:15:17+02:00",
+  "id": "galm_motion_layout",
+  "duration": 4,
+  "title": "Some MotionLayout Crafts",
+  "author": "Gal Maoz",
+  "summary": "Some MotionLayout Crafts",
+  "theme": "",
+  "status": null,
+  "category": [
+    "animations"
+  ],
+  "tags": [
+    "android"
+  ],
+  "url": "galm_motion_layout"
+}
