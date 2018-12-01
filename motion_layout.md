@@ -102,7 +102,7 @@ Next step is to create the scene_01 file.
     </MotionScene>
 ``` 
 
-Explaination:
+Explanation:
 In order to take control of an animation, we need to define a ```MotionScene```.
 MotionScene is describing the animation. in our case we will make a tranistion from point A to point B on the screen, with a duration of 1 second.
  
@@ -176,7 +176,7 @@ your ```scene_01.xml``` file should look like:
 ``` 
 
 
-Explaination:
+Explanation:
 Take a look at the ```<Constraint>``` of ```@+id/start``` ConstraintSet,
 * We define the view on which we will want the animation to affect(```@+id/main_iv```).
 * Next, we will define it's constraints. These constraints will be affect imidiitlly, as a start stage. The current constaints are centering the view vertically and attach it to the left.
@@ -233,7 +233,7 @@ The app you should be looking like this:
 
 Pay attention to the following changes.
 
-1.  We are using a View instade of an ImageView in MainActivity.xml.
+*   We are using a View instade of an ImageView in MainActivity.xml.
 
 ``` bash
  <View
@@ -243,13 +243,13 @@ Pay attention to the following changes.
         android:background="@color/colorAccent"
         />
 ```
-2.  We created a new scene file : scene_02.xml.
-3.  We changed the refernce layoutDescription to point on @xml/scene_02 : 
+*   We created a new scene file : scene_02.xml.
+*   We changed the refernce layoutDescription to point on @xml/scene_02 : 
 
 ``` bash
 app:layoutDescription="@xml/scene_02"
 ```
-4.  In scene_02.xml we constrainted our view to center horizontal + bottom at start, and center horizontal + top at the end of the animation.
+*   In scene_02.xml we constrainted our view to center horizontal + bottom at start, and center horizontal + top at the end of the animation.
 
 ``` bash
 <ConstraintSet android:id="@+id/start">
@@ -288,7 +288,7 @@ We will go over some attributes that can be changed during the animation.
 android:layout_height="164dp"
 ```
 
-Try up your app now.
+**Try up your app now.**
 
 *   Alpha :
     *   Add the following ```CustomAttribute``` into your start ```Constraint```
@@ -302,7 +302,7 @@ Try up your app now.
         ``` bash
         android:alpha="0.5"
         ```
-Try up your app now.
+**Try up your app now.**
 
 *   Rotation :
     *   Add the following ```CustomAttribute``` into your start ```Constraint```
@@ -316,7 +316,7 @@ Try up your app now.
         ``` bash
         android:rotation="-720"
         ```
-Try up your app now.
+**Try up your app now.**
 
 *   Translation :
     *   Add the following ```CustomAttribute``` into your start ```Constraint```
@@ -330,7 +330,7 @@ Try up your app now.
         ``` bash
         android:translationX="100dp"
         ```
-Try up your app now.
+**Try up your app now.**
 
 *   Changing color:
     You will need  to add a ```CustomAttribute``` into your ```Constraint```, both the start and the end:
@@ -365,6 +365,870 @@ Try up your app now.
             motion:customColorValue="#ff0000" />
     </Constraint>
 </ConstraintSet>
+```
+
+**Try up your app now.**
+
+
+## Interpolations
+Duration: 0:10
+
+A word about interpolations.
+
+For each ```<Transition>``` we can define an interpolator.
+
+* Go ahead and try on of the following : 
+
+    <img src="https://raw.githubusercontent.com/maozgal/MotionLayout/master/pics/Screen%20Shot%202018-11-29%20at%2010.39.39%20AM.png">
+    
+    
+## Pictures monipulations
+Duration: 0:10
+
+Images has a special set of attributes, we are going to explore some of them.
+
+Let's go back to our image view settings : 
+
+*   [Download](https://github.com/maozgal/MotionLayout/raw/image_manipulation/app/src/main/res/drawable/icon2.png) a new image and add it into your drawable folder.
+
+*   We are using an ```ImageFilterView``` instade of a ```View``` in MainActivity.xml.
+
+``` bash
+ <android.support.constraint.utils.ImageFilterView
+        android:id="@+id/main_iv"
+        android:src="@drawable/icon2"
+        android:layout_width="64dp"
+        android:layout_height="64dp"/>
+```
+*   We created a new scene file : ```scene_03.xml```.
+*   We changed the refernce layoutDescription to point on ```@xml/scene_03``` : 
+
+``` bash
+app:layoutDescription="@xml/scene_03"
+```
+*   Copy the following into ```scene_03.xml```.
+
+``` bash
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@+id/start"
+        motion:duration="1000">
+
+    </Transition>
+
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/main_iv"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginStart="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent">
+
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/main_iv"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginEnd="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="parent">
+
+        </Constraint>
+    </ConstraintSet>
+
+</MotionScene>
+```
+
+You can also checkout [image_manipulation] (https://github.com/maozgal/MotionLayout/archive/image_manipulation.zip) branch.
+
+* Saturation : 
+    *   in ```scene_03.xml``` add a saturation CustomAttribute to the start and the end Constraint : 
+    
+     ``` bash
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/main_iv"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginStart="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                motion:attributeName="saturation"
+                motion:customFloatValue="1" />
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/main_iv"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginEnd="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                motion:attributeName="saturation"
+                motion:customFloatValue="0" />
+        </Constraint>
+    </ConstraintSet>
+    ```
+    
+    **Try up your app now.**
+    
+* Contrast : 
+    *   in ```scene_03.xml``` add a contrast CustomAttribute to the start Constraint : 
+    
+     ``` bash
+    <CustomAttribute
+                motion:attributeName="contrast"
+                motion:customFloatValue="1" />
+    ```
+    
+    and the end Constraint should get :
+    
+     ``` bash
+    <CustomAttribute
+                motion:attributeName="contrast"
+                motion:customFloatValue="1" />
+    ```
+    
+    **Try up your app now.**
+    
+* Warmth : 
+    *   in ```scene_03.xml``` add a warmth CustomAttribute to the start Constraint : 
+    
+     ``` bash
+    <CustomAttribute
+                motion:attributeName="warmth"
+                motion:customFloatValue="1" />
+    ```
+    
+    and the end Constraint should get :
+    
+     ``` bash
+    <CustomAttribute
+                motion:attributeName="warmth"
+                motion:customFloatValue="2" />
+    ```
+    
+    **Try up your app now.**
+    
+* Altering an image with fade : 
+    *   in ```activity_main.xml```, Add altSrc to your ```ImageFilterView``` : 
+    
+    ``` bash
+    <android.support.constraint.utils.ImageFilterView
+        android:id="@+id/main_iv"
+        android:src="@drawable/icon2"
+        app:altSrc="@drawable/icon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"/>
+    ```
+    
+    *   in ```scene_03.xml``` add a crossfade CustomAttribute to the start and the end Constraint : 
+    
+     ``` bash
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/main_iv"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginStart="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="0" />
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/main_iv"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginEnd="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="1" />
+        </Constraint>
+    </ConstraintSet>
+    ```
+    
+    **Try up your app now.**
+    
+## Swipes
+Duration: 0:10
+
+MotionLayout can handle the motion without callbacks, just by swipng back and forth the views them self.
+
+
+*   Lets get rid of our buttons in ```activity_main.xml``` and delete handleViews() method from
+```MainActivity.java```.
+
+*   Create a new scene file : ```scene_04.xml```.
+*   Change the refernce layoutDescription to point on ```@xml/scene_04``` : 
+
+``` bash
+app:layoutDescription="@xml/scene_04"
+```
+
+*   Copy the following into ```scene_04.xml```.
+
+``` bash
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@+id/start"
+        motion:duration="1000">
+
+    </Transition>
+
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/main_iv"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginStart="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent">
+
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/main_iv"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginEnd="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="parent">
+
+        </Constraint>
+    </ConstraintSet>
+
+</MotionScene>
+```
+
+*   Your ```activity_main.xml``` should look like : 
+
+``` bash
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.motion.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motionLayout_container"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    app:layoutDescription="@xml/scene_04"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <android.support.constraint.utils.ImageFilterView
+        android:id="@+id/main_iv"
+        android:src="@drawable/icon2"
+        android:layout_width="64dp"
+        android:layout_height="64dp"/>
+
+
+</android.support.constraint.motion.MotionLayout>
+```
+
+*   Go to your ```scene_04.xml```, and change your ```<Transition>``` into the following : 
+
+``` bash
+<Transition
+    motion:constraintSetEnd="@+id/end"
+    motion:constraintSetStart="@+id/start"
+    motion:duration="1000">
+    <OnSwipe
+        motion:touchAnchorId="@+id/main_iv"
+        motion:touchAnchorSide="right"
+        motion:dragDirection="dragRight" />
+</Transition>
+```
+ **Try up your app now.**
+
+## KeyFrame
+Duration: 0:10
+
+Until now, we defined a pair of start and end states, and made an animations between them.
+You might ask your self, what if i want more than two states?
+
+This is what KeyFrame are all about.
+
+On this slide we will take an image from bottom to top (cetered horizontally), but this time when the image will be in the middle of the animation path, it will be constraint to the start of the view.
+
+
+*   Create a new scene file : ```scene_05.xml```.
+*   Change the refernce layoutDescription to point on ```@xml/scene_05``` : 
+
+``` bash
+app:layoutDescription="@xml/scene_05"
+```
+
+*   Copy the following into ```scene_05.xml```.
+
+``` bash
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@+id/start"
+        motion:duration="1000">
+        <OnSwipe
+            motion:touchAnchorId="@+id/main_iv"
+            motion:touchAnchorSide="top"
+            motion:dragDirection="dragUp"/>
+    </Transition>
+
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/main_iv"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginBottom="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent">
+
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/main_iv"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="8dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="parent">
+
+        </Constraint>
+    </ConstraintSet>
+
+</MotionScene>
+```
+
+*   Add the following below onSwipe
+
+``` bash
+<KeyFrameSet>
+    <KeyPosition
+        motion:keyPositionType="parentRelative"
+        motion:percentX="0"
+        motion:framePosition="50"
+        motion:target="@id/main_iv"/>
+</KeyFrameSet>
+```
+
+**Try up your app now.**
+
+Explanation : 
+*   ```percentX``` = Left of the parent.
+*   ```framePosition``` = When on the timeline the action take place.
+*   ```target``` = The view on which the action will affect.
+
+
+Let's try a more complicated ```KeyFrameSet```.
+
+*   Replace your ```KeyFrameSet``` with the following :
+
+``` bash
+<KeyFrameSet>
+    <KeyPosition
+        motion:keyPositionType="parentRelative"
+        motion:percentX="0"
+        motion:framePosition="25"
+        motion:target="@id/main_iv"/>
+    <KeyPosition
+        motion:keyPositionType="parentRelative"
+        motion:percentX="1"
+        motion:framePosition="50"
+        motion:target="@id/main_iv"/>
+    <KeyPosition
+        motion:keyPositionType="parentRelative"
+        motion:percentX="0"
+        motion:framePosition="70"
+        motion:target="@id/main_iv"/>
+</KeyFrameSet>
+```    
+
+**Try up your app now.**
+
+You can also add some other attributes :
+
+*   Replace your ```KeyFrameSet``` with the following :
+
+``` bash
+<KeyFrameSet>
+    <KeyPosition
+        motion:keyPositionType="parentRelative"
+        motion:percentX="0"
+        motion:framePosition="25"
+        motion:target="@id/main_iv"/>
+    <KeyPosition
+        motion:keyPositionType="parentRelative"
+        motion:percentX="1"
+        motion:framePosition="50"
+        motion:target="@id/main_iv"/>
+    <KeyPosition
+        motion:keyPositionType="parentRelative"
+        motion:percentX="0"
+        motion:framePosition="70"
+        motion:target="@id/main_iv"/>
+    <KeyAttribute
+        android:scaleX="2"
+        android:scaleY="2"
+        android:rotation="-45"
+        motion:framePosition="50"
+        motion:target="@id/main_iv" />
+</KeyFrameSet>
+```    
+
+**Try up your app now.**
+
+And if we will go wiled : 
+
+You can also add some other attributes :
+
+
+*   Replace your ```KeyFrameSet``` with the following :
+
+``` bash
+<KeyFrameSet>
+    <KeyPosition
+        motion:keyPositionType="parentRelative"
+        motion:percentX="0"
+        motion:framePosition="25"
+        motion:target="@id/main_iv"/>
+    <KeyPosition
+        motion:keyPositionType="parentRelative"
+        motion:percentX="1"
+        motion:framePosition="50"
+        motion:target="@id/main_iv"/>
+    <KeyPosition
+        motion:keyPositionType="parentRelative"
+        motion:percentX="0"
+        motion:framePosition="70"
+        motion:target="@id/main_iv"/>
+    <KeyAttribute
+        android:rotation="-45"
+        motion:framePosition="25"
+        motion:target="@id/main_iv" />
+    <KeyAttribute
+        android:scaleX="2"
+        android:scaleY="2"
+        android:rotation="-245"
+        motion:framePosition="50"
+        motion:target="@id/main_iv" />
+    <KeyAttribute
+        android:rotation="-445"
+        motion:framePosition="75"
+        motion:target="@id/main_iv" />
+</KeyFrameSet>
+```    
+
+**Try up your app now.**
+
+## Cool stuff with KeyFrames
+Duration: 0:10
+
+We can try some cool keyframe combinations.
+
+*   Create a new scene file : ```scene_06.xml```.
+*   Change the refernce layoutDescription to point on ```@xml/scene_06``` : 
+
+``` bash
+app:layoutDescription="@xml/scene_06"
+```
+
+*   Copy the following into ```scene_06.xml```.
+
+``` bash
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@+id/start"
+        motion:duration="1000">
+
+    </Transition>
+
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/main_iv"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginBottom="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent">
+
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/main_iv"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="8dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="parent">
+
+        </Constraint>
+    </ConstraintSet>
+
+</MotionScene>
+```
+
+* Go to ```activity_main.xml``` and add the following lines :
+
+``` bash
+<Button
+        android:id="@+id/animate_to_start_bt"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:text="Animate To Start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/animate_to_End_bt"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Button
+        android:id="@+id/animate_to_End_bt"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:text="Animate To End"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/animate_to_start_bt"/>
+```
+
+Also, in ```activity_main.xml``` add : 
+
+``` bash
+private void handleViews() {
+        animateToEndButton = findViewById(R.id.animate_to_End_bt);
+        animateToStartButton = findViewById(R.id.animate_to_start_bt);
+        mMotionLayout = findViewById(R.id.motionLayout_container);
+
+
+        animateToEndButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMotionLayout.transitionToEnd();
+            }
+        });
+
+        animateToStartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMotionLayout.transitionToStart();
+            }
+        });
+    }
+```
+    
+And call handleViews() from onCreate()
+
+*   Lets add the following lines itno ```<Transition>``` : 
+
+``` bash
+<KeyFrameSet>
+    <KeyPosition
+        motion:keyPositionType="parentRelative"
+        motion:percentY="0.25"
+        motion:percentX="0.75"
+        motion:framePosition="25"
+        motion:target="@id/main_iv"/>
+    <KeyPosition
+        motion:keyPositionType="parentRelative"
+        motion:percentY="0.5"
+        motion:percentX="0.1"
+        motion:framePosition="50"
+        motion:target="@id/main_iv"/>
+    <KeyPosition
+        motion:keyPositionType="parentRelative"
+        motion:percentY="0.75"
+        motion:percentX="0.75"
+        motion:framePosition="75"
+        motion:target="@id/main_iv"/>
+</KeyFrameSet>
+```
+
+We can go more wild and do that : 
+
+
+``` bash
+<Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@+id/start"
+        motion:duration="4000">
+        <KeyFrameSet>
+            <KeyPosition
+                motion:keyPositionType="parentRelative"
+                motion:percentY="0.80"
+                motion:percentX="0.80"
+                motion:framePosition="2"
+                motion:target="@id/main_iv"/>
+            <KeyPosition
+                motion:keyPositionType="parentRelative"
+                motion:percentY="0.60"
+                motion:percentX="0.80"
+                motion:framePosition="10"
+                motion:target="@id/main_iv"/>
+            <KeyPosition
+                motion:keyPositionType="parentRelative"
+                motion:percentY="0.70"
+                motion:percentX="1"
+                motion:framePosition="15"
+                motion:target="@id/main_iv"/>
+            <KeyPosition
+                motion:keyPositionType="parentRelative"
+                motion:percentY="0.80"
+                motion:percentX="0.80"
+                motion:framePosition="20"
+                motion:target="@id/main_iv"/>
+
+            <KeyPosition
+                motion:keyPositionType="parentRelative"
+                motion:percentY="0.80"
+                motion:percentX="0.20"
+                motion:framePosition="25"
+                motion:target="@id/main_iv"/>
+            <KeyPosition
+                motion:keyPositionType="parentRelative"
+                motion:percentY="0.90"
+                motion:percentX="0.10"
+                motion:framePosition="30"
+                motion:target="@id/main_iv"/>
+            <KeyPosition
+                motion:keyPositionType="parentRelative"
+                motion:percentY="1"
+                motion:percentX="0.20"
+                motion:framePosition="35"
+                motion:target="@id/main_iv"/>
+
+
+            <KeyPosition
+                motion:keyPositionType="parentRelative"
+                motion:percentY="0.2"
+                motion:percentX="0.20"
+                motion:framePosition="40"
+                motion:target="@id/main_iv"/>
+        </KeyFrameSet>
+    </Transition>
+```
+
+**Try up your app now.**
+
+## Arcs
+Duration: 0:10
+
+
+*   Create a new scene file : ```scene_07.xml```.
+*   Change the refernce layoutDescription to point on ```@xml/scene_07``` : 
+
+``` bash
+app:layoutDescription="@xml/scene_07"
+```
+
+*   Copy the following into ```scene_07.xml```.
+
+``` bash
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@+id/start"
+        motion:duration="1000">
+        <OnSwipe
+            motion:touchAnchorId="@+id/main_iv"
+            motion:touchAnchorSide="top"
+            motion:dragDirection="dragUp"/>
+
+    </Transition>
+
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/main_iv"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginBottom="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent">
+
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/main_iv"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="8dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent">
+
+        </Constraint>
+    </ConstraintSet>
+
+</MotionScene>
+```
+
+For this property, we want to see the path.
+* Go to ```activity_main.xml``` and add the following line to the root view :
+
+``` bash
+app:showPaths="true"
+```
+
+* Go to ```scene_06.xml``` and add to the following line to the ```<Constraint>``` child of  ```<ConstraintSet android:id="@+id/start">``` : 
+
+``` bash
+motion:pathMotionArc="startHorizontal"
+```
+
+Like this :
+
+``` bash
+<ConstraintSet android:id="@+id/start">
+    <Constraint
+        motion:pathMotionArc="startHorizontal"
+        android:id="@+id/main_iv"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginBottom="8dp"
+        motion:layout_constraintBottom_toBottomOf="parent"
+        motion:layout_constraintEnd_toEndOf="parent">
+
+    </Constraint>
+</ConstraintSet>
+```
+
+
+**Try up your app now.**
+
+You can also decide that you want the arc to be only a part of the path and not all of it :
+
+* Delete the following line from your end ```<Constraint>```: 
+
+``` bash
+motion:layout_constraintStart_toStartOf="parent"
+```
+
+* Add the following lines to your ```<Transition>``` : 
+
+
+``` bash
+<KeyFrameSet>
+    <KeyPosition
+        motion:keyPositionType="parentRelative"
+        motion:percentY="0.5"
+        motion:pathMotionArc="none"
+        motion:framePosition="50"
+        motion:target="@id/main_iv"/>
+</KeyFrameSet>
+```
+
+**Try up your app now.**
+
+* Chane pathMotionArc to : 
+
+``` bash
+motion:pathMotionArc="flip"
+```
+
+**Try up your app now.**
+
+## Monitor
+Duration: 0:10
+
+
+We can control the progress of a ```MotionLayout``` by setProgress() method.
+
+*   Lets get rid of our buttons in ```activity_main.xml```, and add a seekbar instade : 
+
+``` bash
+<android.support.v7.widget.AppCompatSeekBar
+        android:id="@+id/seek"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="10dp"/>
+```
+
+
+*   On ```MainActivity.java```, change handleViews() method to : 
+
+``` bash
+ private void handleViews() {
+        mMotionLayout = findViewById(R.id.motionLayout_container);
+        SeekBar seekBar = findViewById(R.id.seek);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                mMotionLayout.setProgress(i / 100f);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
 ```
 
 **Try up your app now.**

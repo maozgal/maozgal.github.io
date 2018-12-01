@@ -97,7 +97,7 @@
 </code></pre>
 </li>
 </ul>
-<p>Explaination:<br>In order to take control of an animation, we need to define a <code>MotionScene</code>.<br>MotionScene is describing the animation. in our case we will make a tranistion from point A to point B on the screen, with a duration of 1 second.</p>
+<p>Explanation:<br>In order to take control of an animation, we need to define a <code>MotionScene</code>.<br>MotionScene is describing the animation. in our case we will make a tranistion from point A to point B on the screen, with a duration of 1 second.</p>
 <p>Each point is a <code>ConstraintSet</code>.<br>The animation will start at <code>@+id/start</code>, and end at <code>@+id/start</code>.</p>
 <ul>
 <li>Copy the following content inside <code>@+id/start</code>:<pre><code>&lt;Constraint
@@ -159,7 +159,7 @@
 
 &lt;/MotionScene&gt;
 </code></pre>
-<p>Explaination:<br>Take a look at the <code>&lt;Constraint&gt;</code> of <code>@+id/start</code> ConstraintSet,</p>
+<p>Explanation:<br>Take a look at the <code>&lt;Constraint&gt;</code> of <code>@+id/start</code> ConstraintSet,</p>
 <ul>
 <li>We define the view on which we will want the animation to affect(<code>@+id/main_iv</code>).</li>
 <li>Next, we will define it&#39;s constraints. These constraints will be affect imidiitlly, as a start stage. The current constaints are centering the view vertically and attach it to the left.</li>
@@ -205,9 +205,9 @@
 <p>The app you should be looking like this:</p>
 <p><img style="max-width: 250.00px" src="img/f5cedd772bbafaf2.png"></p>
 <p>Pay attention to the following changes.</p>
-<ol type="1">
+<ul>
 <li>We are using a View instade of an ImageView in MainActivity.xml.</li>
-</ol>
+</ul>
 <pre><code> &lt;View
         android:id=&#34;@+id/main_iv&#34;
         android:layout_width=&#34;64dp&#34;
@@ -215,15 +215,15 @@
         android:background=&#34;@color/colorAccent&#34;
         /&gt;
 </code></pre>
-<ol type="1">
+<ul>
 <li>We created a new scene file : scene_02.xml.</li>
 <li>We changed the refernce layoutDescription to point on @xml/scene_02 :</li>
-</ol>
+</ul>
 <pre><code>app:layoutDescription=&#34;@xml/scene_02&#34;
 </code></pre>
-<ol type="1">
+<ul>
 <li>In scene_02.xml we constrainted our view to center horizontal + bottom at start, and center horizontal + top at the end of the animation.</li>
-</ol>
+</ul>
 <pre><code>&lt;ConstraintSet android:id=&#34;@+id/start&#34;&gt;
         &lt;Constraint
             android:id=&#34;@+id/main_iv&#34;
@@ -253,7 +253,7 @@
 </ul>
 <pre><code>android:layout_height=&#34;164dp&#34;
 </code></pre>
-<p>Try up your app now.</p>
+<p><strong>Try up your app now.</strong></p>
 <ul>
 <li>Alpha :<ul>
 <li>Add the following <code>CustomAttribute</code> into your start <code>Constraint</code><pre><code>android:alpha=&#34;1.0&#34;
@@ -261,7 +261,7 @@
 </li>
 <li>Add the following <code>CustomAttribute</code> into your end <code>Constraint</code><pre><code>android:alpha=&#34;0.5&#34;
 </code></pre>
-Try up your app now.</li>
+<strong>Try up your app now.</strong></li>
 </ul>
 </li>
 <li>Rotation :<ul>
@@ -270,7 +270,7 @@ Try up your app now.</li>
 </li>
 <li>Add the following <code>CustomAttribute</code> into your end <code>Constraint</code><pre><code>android:rotation=&#34;-720&#34;
 </code></pre>
-Try up your app now.</li>
+<strong>Try up your app now.</strong></li>
 </ul>
 </li>
 <li>Translation :<ul>
@@ -279,7 +279,7 @@ Try up your app now.</li>
 </li>
 <li>Add the following <code>CustomAttribute</code> into your end <code>Constraint</code><pre><code>android:translationX=&#34;100dp&#34;
 </code></pre>
-Try up your app now.</li>
+<strong>Try up your app now.</strong></li>
 </ul>
 </li>
 <li>Changing color:<br>You will need  to add a <code>CustomAttribute</code> into your <code>Constraint</code>, both the start and the end:</li>
@@ -313,6 +313,689 @@ Try up your app now.</li>
             motion:customColorValue=&#34;#ff0000&#34; /&gt;
     &lt;/Constraint&gt;
 &lt;/ConstraintSet&gt;
+</code></pre>
+<p><strong>Try up your app now.</strong></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Interpolations" duration="1">
+        <p>A word about interpolations.</p>
+<p>For each <code>&lt;Transition&gt;</code> we can define an interpolator.</p>
+<ul>
+<li>Go ahead and try on of the following :<img src="img/5a364e10f9716172.png"></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Pictures monipulations" duration="1">
+        <p>Images has a special set of attributes, we are going to explore some of them.</p>
+<p>Let&#39;s go back to our image view settings :</p>
+<ul>
+<li><a href="https://github.com/maozgal/MotionLayout/raw/image_manipulation/app/src/main/res/drawable/icon2.png" target="_blank">Download</a> a new image and add it into your drawable folder.</li>
+<li>We are using an <code>ImageFilterView</code> instade of a <code>View</code> in MainActivity.xml.</li>
+</ul>
+<pre><code> &lt;android.support.constraint.utils.ImageFilterView
+        android:id=&#34;@+id/main_iv&#34;
+        android:src=&#34;@drawable/icon2&#34;
+        android:layout_width=&#34;64dp&#34;
+        android:layout_height=&#34;64dp&#34;/&gt;
+</code></pre>
+<ul>
+<li>We created a new scene file : <code>scene_03.xml</code>.</li>
+<li>We changed the refernce layoutDescription to point on <code>@xml/scene_03</code> :</li>
+</ul>
+<pre><code>app:layoutDescription=&#34;@xml/scene_03&#34;
+</code></pre>
+<ul>
+<li>Copy the following into <code>scene_03.xml</code>.</li>
+</ul>
+<pre><code>&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
+&lt;MotionScene
+    xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;
+    xmlns:motion=&#34;http://schemas.android.com/apk/res-auto&#34;&gt;
+
+    &lt;Transition
+        motion:constraintSetEnd=&#34;@+id/end&#34;
+        motion:constraintSetStart=&#34;@+id/start&#34;
+        motion:duration=&#34;1000&#34;&gt;
+
+    &lt;/Transition&gt;
+
+
+    &lt;ConstraintSet android:id=&#34;@+id/start&#34;&gt;
+        &lt;Constraint
+            android:id=&#34;@+id/main_iv&#34;
+            android:layout_width=&#34;180dp&#34;
+            android:layout_height=&#34;180dp&#34;
+            android:layout_marginStart=&#34;8dp&#34;
+            motion:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+            motion:layout_constraintStart_toStartOf=&#34;parent&#34;
+            motion:layout_constraintTop_toTopOf=&#34;parent&#34;&gt;
+
+        &lt;/Constraint&gt;
+    &lt;/ConstraintSet&gt;
+
+    &lt;ConstraintSet android:id=&#34;@+id/end&#34;&gt;
+        &lt;Constraint
+            android:id=&#34;@+id/main_iv&#34;
+            android:layout_width=&#34;180dp&#34;
+            android:layout_height=&#34;180dp&#34;
+            android:layout_marginEnd=&#34;8dp&#34;
+            motion:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+            motion:layout_constraintEnd_toEndOf=&#34;parent&#34;
+            motion:layout_constraintTop_toTopOf=&#34;parent&#34;&gt;
+
+        &lt;/Constraint&gt;
+    &lt;/ConstraintSet&gt;
+
+&lt;/MotionScene&gt;
+</code></pre>
+<p>You can also checkout <a href="https://github.com/maozgal/MotionLayout/archive/image_manipulation.zip" target="_blank">image_manipulation</a> branch.</p>
+<ul>
+<li>Saturation :<ul>
+<li>in <code>scene_03.xml</code> add a saturation CustomAttribute to the start and the end Constraint :<br><br></li>
+</ul>
+<pre><code>&lt;ConstraintSet android:id=&#34;@+id/start&#34;&gt;
+    &lt;Constraint
+        android:id=&#34;@+id/main_iv&#34;
+        android:layout_width=&#34;180dp&#34;
+        android:layout_height=&#34;180dp&#34;
+        android:layout_marginStart=&#34;8dp&#34;
+        motion:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+        motion:layout_constraintStart_toStartOf=&#34;parent&#34;
+        motion:layout_constraintTop_toTopOf=&#34;parent&#34;&gt;
+        &lt;CustomAttribute
+            motion:attributeName=&#34;saturation&#34;
+            motion:customFloatValue=&#34;1&#34; /&gt;
+    &lt;/Constraint&gt;
+&lt;/ConstraintSet&gt;
+
+&lt;ConstraintSet android:id=&#34;@+id/end&#34;&gt;
+    &lt;Constraint
+        android:id=&#34;@+id/main_iv&#34;
+        android:layout_width=&#34;180dp&#34;
+        android:layout_height=&#34;180dp&#34;
+        android:layout_marginEnd=&#34;8dp&#34;
+        motion:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+        motion:layout_constraintEnd_toEndOf=&#34;parent&#34;
+        motion:layout_constraintTop_toTopOf=&#34;parent&#34;&gt;
+        &lt;CustomAttribute
+            motion:attributeName=&#34;saturation&#34;
+            motion:customFloatValue=&#34;0&#34; /&gt;
+    &lt;/Constraint&gt;
+&lt;/ConstraintSet&gt;
+</code></pre>
+<strong>Try up your app now.</strong></li>
+<li>Contrast :<ul>
+<li>in <code>scene_03.xml</code> add a contrast CustomAttribute to the start Constraint :<br><br></li>
+</ul>
+<pre><code>&lt;CustomAttribute
+            motion:attributeName=&#34;contrast&#34;
+            motion:customFloatValue=&#34;1&#34; /&gt;
+</code></pre>
+and the end Constraint should get :<pre><code>&lt;CustomAttribute
+            motion:attributeName=&#34;contrast&#34;
+            motion:customFloatValue=&#34;1&#34; /&gt;
+</code></pre>
+<strong>Try up your app now.</strong></li>
+<li>Warmth :<ul>
+<li>in <code>scene_03.xml</code> add a warmth CustomAttribute to the start Constraint :<br><br></li>
+</ul>
+<pre><code>&lt;CustomAttribute
+            motion:attributeName=&#34;warmth&#34;
+            motion:customFloatValue=&#34;1&#34; /&gt;
+</code></pre>
+and the end Constraint should get :<pre><code>&lt;CustomAttribute
+            motion:attributeName=&#34;warmth&#34;
+            motion:customFloatValue=&#34;2&#34; /&gt;
+</code></pre>
+<strong>Try up your app now.</strong></li>
+<li>Altering an image with fade :<ul>
+<li>in <code>activity_main.xml</code>, Add altSrc to your <code>ImageFilterView</code> :<br><br></li>
+</ul>
+<pre><code>&lt;android.support.constraint.utils.ImageFilterView
+    android:id=&#34;@+id/main_iv&#34;
+    android:src=&#34;@drawable/icon2&#34;
+    app:altSrc=&#34;@drawable/icon&#34;
+    android:layout_width=&#34;64dp&#34;
+    android:layout_height=&#34;64dp&#34;/&gt;
+</code></pre>
+<ul>
+<li>in <code>scene_03.xml</code> add a crossfade CustomAttribute to the start and the end Constraint :<br><br></li>
+</ul>
+<pre><code>&lt;ConstraintSet android:id=&#34;@+id/start&#34;&gt;
+    &lt;Constraint
+        android:id=&#34;@+id/main_iv&#34;
+        android:layout_width=&#34;180dp&#34;
+        android:layout_height=&#34;180dp&#34;
+        android:layout_marginStart=&#34;8dp&#34;
+        motion:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+        motion:layout_constraintStart_toStartOf=&#34;parent&#34;
+        motion:layout_constraintTop_toTopOf=&#34;parent&#34;&gt;
+        &lt;CustomAttribute
+            motion:attributeName=&#34;crossfade&#34;
+            motion:customFloatValue=&#34;0&#34; /&gt;
+    &lt;/Constraint&gt;
+&lt;/ConstraintSet&gt;
+
+&lt;ConstraintSet android:id=&#34;@+id/end&#34;&gt;
+    &lt;Constraint
+        android:id=&#34;@+id/main_iv&#34;
+        android:layout_width=&#34;180dp&#34;
+        android:layout_height=&#34;180dp&#34;
+        android:layout_marginEnd=&#34;8dp&#34;
+        motion:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+        motion:layout_constraintEnd_toEndOf=&#34;parent&#34;
+        motion:layout_constraintTop_toTopOf=&#34;parent&#34;&gt;
+        &lt;CustomAttribute
+            motion:attributeName=&#34;crossfade&#34;
+            motion:customFloatValue=&#34;1&#34; /&gt;
+    &lt;/Constraint&gt;
+&lt;/ConstraintSet&gt;
+</code></pre>
+<strong>Try up your app now.</strong></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Swipes" duration="1">
+        <p>MotionLayout can handle the motion without callbacks, just by swipng back and forth the views them self.</p>
+<ul>
+<li>Lets get rid of our button in <code>activity_main.xml</code> and delete handleViews() method from<br><code>MainActivity.java</code>.</li>
+<li>Create a new scene file : <code>scene_04.xml</code>.</li>
+<li>Change the refernce layoutDescription to point on <code>@xml/scene_04</code> :</li>
+</ul>
+<pre><code>app:layoutDescription=&#34;@xml/scene_04&#34;
+</code></pre>
+<ul>
+<li>Copy the following into <code>scene_04.xml</code>.</li>
+</ul>
+<pre><code>&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
+&lt;MotionScene
+    xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;
+    xmlns:motion=&#34;http://schemas.android.com/apk/res-auto&#34;&gt;
+
+    &lt;Transition
+        motion:constraintSetEnd=&#34;@+id/end&#34;
+        motion:constraintSetStart=&#34;@+id/start&#34;
+        motion:duration=&#34;1000&#34;&gt;
+
+    &lt;/Transition&gt;
+
+
+    &lt;ConstraintSet android:id=&#34;@+id/start&#34;&gt;
+        &lt;Constraint
+            android:id=&#34;@+id/main_iv&#34;
+            android:layout_width=&#34;180dp&#34;
+            android:layout_height=&#34;180dp&#34;
+            android:layout_marginStart=&#34;8dp&#34;
+            motion:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+            motion:layout_constraintStart_toStartOf=&#34;parent&#34;
+            motion:layout_constraintTop_toTopOf=&#34;parent&#34;&gt;
+
+        &lt;/Constraint&gt;
+    &lt;/ConstraintSet&gt;
+
+    &lt;ConstraintSet android:id=&#34;@+id/end&#34;&gt;
+        &lt;Constraint
+            android:id=&#34;@+id/main_iv&#34;
+            android:layout_width=&#34;180dp&#34;
+            android:layout_height=&#34;180dp&#34;
+            android:layout_marginEnd=&#34;8dp&#34;
+            motion:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+            motion:layout_constraintEnd_toEndOf=&#34;parent&#34;
+            motion:layout_constraintTop_toTopOf=&#34;parent&#34;&gt;
+
+        &lt;/Constraint&gt;
+    &lt;/ConstraintSet&gt;
+
+&lt;/MotionScene&gt;
+</code></pre>
+<ul>
+<li>Your <code>activity_main.xml</code> should look like :</li>
+</ul>
+<pre><code>&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
+&lt;android.support.constraint.motion.MotionLayout
+    xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;
+    xmlns:app=&#34;http://schemas.android.com/apk/res-auto&#34;
+    xmlns:tools=&#34;http://schemas.android.com/tools&#34;
+    android:id=&#34;@+id/motionLayout_container&#34;
+    android:background=&#34;#ffffff&#34;
+    android:layout_width=&#34;match_parent&#34;
+    app:layoutDescription=&#34;@xml/scene_04&#34;
+    android:layout_height=&#34;match_parent&#34;
+    tools:context=&#34;.MainActivity&#34;&gt;
+
+
+    &lt;android.support.constraint.utils.ImageFilterView
+        android:id=&#34;@+id/main_iv&#34;
+        android:src=&#34;@drawable/icon2&#34;
+        android:layout_width=&#34;64dp&#34;
+        android:layout_height=&#34;64dp&#34;/&gt;
+
+
+&lt;/android.support.constraint.motion.MotionLayout&gt;
+</code></pre>
+<ul>
+<li>Go to your <code>scene_04.xml</code>, and change your <code>&lt;Transition&gt;</code> into the following :</li>
+</ul>
+<pre><code>&lt;Transition
+    motion:constraintSetEnd=&#34;@+id/end&#34;
+    motion:constraintSetStart=&#34;@+id/start&#34;
+    motion:duration=&#34;1000&#34;&gt;
+    &lt;OnSwipe
+        motion:touchAnchorId=&#34;@+id/main_iv&#34;
+        motion:touchAnchorSide=&#34;right&#34;
+        motion:dragDirection=&#34;dragRight&#34; /&gt;
+&lt;/Transition&gt;
+</code></pre>
+<p><strong>Try up your app now.</strong></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="KeyFrame" duration="1">
+        <p>Until now, we defined a pair of start and end states, and made an animations between them.<br>You might ask your self, what if i want more than two states?</p>
+<p>This is what KeyFrame are all about.</p>
+<p>On this slide we will take an image from bottom to top (cetered horizontally), but this time when the image will be in the middle of the animation path, it will be constraint to the start of the view.</p>
+<ul>
+<li>Create a new scene file : <code>scene_05.xml</code>.</li>
+<li>Change the refernce layoutDescription to point on <code>@xml/scene_05</code> :</li>
+</ul>
+<pre><code>app:layoutDescription=&#34;@xml/scene_05&#34;
+</code></pre>
+<ul>
+<li>Copy the following into <code>scene_05.xml</code>.</li>
+</ul>
+<pre><code>&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
+&lt;MotionScene
+    xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;
+    xmlns:motion=&#34;http://schemas.android.com/apk/res-auto&#34;&gt;
+
+    &lt;Transition
+        motion:constraintSetEnd=&#34;@+id/end&#34;
+        motion:constraintSetStart=&#34;@+id/start&#34;
+        motion:duration=&#34;1000&#34;&gt;
+        &lt;OnSwipe
+            motion:touchAnchorId=&#34;@+id/main_iv&#34;
+            motion:touchAnchorSide=&#34;top&#34;
+            motion:dragDirection=&#34;dragUp&#34;/&gt;
+    &lt;/Transition&gt;
+
+
+    &lt;ConstraintSet android:id=&#34;@+id/start&#34;&gt;
+        &lt;Constraint
+            android:id=&#34;@+id/main_iv&#34;
+            android:layout_width=&#34;180dp&#34;
+            android:layout_height=&#34;180dp&#34;
+            android:layout_marginBottom=&#34;8dp&#34;
+            motion:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+            motion:layout_constraintStart_toStartOf=&#34;parent&#34;
+            motion:layout_constraintEnd_toEndOf=&#34;parent&#34;&gt;
+
+        &lt;/Constraint&gt;
+    &lt;/ConstraintSet&gt;
+
+    &lt;ConstraintSet android:id=&#34;@+id/end&#34;&gt;
+        &lt;Constraint
+            android:id=&#34;@+id/main_iv&#34;
+            android:layout_width=&#34;180dp&#34;
+            android:layout_height=&#34;180dp&#34;
+            android:layout_marginTop=&#34;8dp&#34;
+            motion:layout_constraintStart_toStartOf=&#34;parent&#34;
+            motion:layout_constraintEnd_toEndOf=&#34;parent&#34;
+            motion:layout_constraintTop_toTopOf=&#34;parent&#34;&gt;
+
+        &lt;/Constraint&gt;
+    &lt;/ConstraintSet&gt;
+
+&lt;/MotionScene&gt;
+</code></pre>
+<ul>
+<li>Add the following below onSwipe</li>
+</ul>
+<pre><code>&lt;KeyFrameSet&gt;
+    &lt;KeyPosition
+        motion:keyPositionType=&#34;parentRelative&#34;
+        motion:percentX=&#34;0&#34;
+        motion:framePosition=&#34;50&#34;
+        motion:target=&#34;@id/main_iv&#34;/&gt;
+&lt;/KeyFrameSet&gt;
+</code></pre>
+<p><strong>Try up your app now.</strong></p>
+<p>Explanation :</p>
+<ul>
+<li><code>percentX</code> = Left of the parent.</li>
+<li><code>framePosition</code> = When on the timeline the action take place.</li>
+<li><code>target</code> = The view on which the action will affect.</li>
+</ul>
+<p>Let&#39;s try a more complicated <code>KeyFrameSet</code>.</p>
+<ul>
+<li>Replace your <code>KeyFrameSet</code> with the following :</li>
+</ul>
+<pre><code>&lt;KeyFrameSet&gt;
+    &lt;KeyPosition
+        motion:keyPositionType=&#34;parentRelative&#34;
+        motion:percentX=&#34;0&#34;
+        motion:framePosition=&#34;25&#34;
+        motion:target=&#34;@id/main_iv&#34;/&gt;
+    &lt;KeyPosition
+        motion:keyPositionType=&#34;parentRelative&#34;
+        motion:percentX=&#34;1&#34;
+        motion:framePosition=&#34;50&#34;
+        motion:target=&#34;@id/main_iv&#34;/&gt;
+    &lt;KeyPosition
+        motion:keyPositionType=&#34;parentRelative&#34;
+        motion:percentX=&#34;0&#34;
+        motion:framePosition=&#34;70&#34;
+        motion:target=&#34;@id/main_iv&#34;/&gt;
+&lt;/KeyFrameSet&gt;
+</code></pre>
+<p><strong>Try up your app now.</strong></p>
+<p>You can also add some other attributes :</p>
+<ul>
+<li>Replace your <code>KeyFrameSet</code> with the following :</li>
+</ul>
+<pre><code>&lt;KeyFrameSet&gt;
+    &lt;KeyPosition
+        motion:keyPositionType=&#34;parentRelative&#34;
+        motion:percentX=&#34;0&#34;
+        motion:framePosition=&#34;25&#34;
+        motion:target=&#34;@id/main_iv&#34;/&gt;
+    &lt;KeyPosition
+        motion:keyPositionType=&#34;parentRelative&#34;
+        motion:percentX=&#34;1&#34;
+        motion:framePosition=&#34;50&#34;
+        motion:target=&#34;@id/main_iv&#34;/&gt;
+    &lt;KeyPosition
+        motion:keyPositionType=&#34;parentRelative&#34;
+        motion:percentX=&#34;0&#34;
+        motion:framePosition=&#34;70&#34;
+        motion:target=&#34;@id/main_iv&#34;/&gt;
+    &lt;KeyAttribute
+        android:scaleX=&#34;2&#34;
+        android:scaleY=&#34;2&#34;
+        android:rotation=&#34;-45&#34;
+        motion:framePosition=&#34;50&#34;
+        motion:target=&#34;@id/main_iv&#34; /&gt;
+&lt;/KeyFrameSet&gt;
+</code></pre>
+<p><strong>Try up your app now.</strong></p>
+<p>And if we will go wiled :</p>
+<p>You can also add some other attributes :</p>
+<ul>
+<li>Replace your <code>KeyFrameSet</code> with the following :</li>
+</ul>
+<pre><code>&lt;KeyFrameSet&gt;
+    &lt;KeyPosition
+        motion:keyPositionType=&#34;parentRelative&#34;
+        motion:percentX=&#34;0&#34;
+        motion:framePosition=&#34;25&#34;
+        motion:target=&#34;@id/main_iv&#34;/&gt;
+    &lt;KeyPosition
+        motion:keyPositionType=&#34;parentRelative&#34;
+        motion:percentX=&#34;1&#34;
+        motion:framePosition=&#34;50&#34;
+        motion:target=&#34;@id/main_iv&#34;/&gt;
+    &lt;KeyPosition
+        motion:keyPositionType=&#34;parentRelative&#34;
+        motion:percentX=&#34;0&#34;
+        motion:framePosition=&#34;70&#34;
+        motion:target=&#34;@id/main_iv&#34;/&gt;
+    &lt;KeyAttribute
+        android:rotation=&#34;-45&#34;
+        motion:framePosition=&#34;25&#34;
+        motion:target=&#34;@id/main_iv&#34; /&gt;
+    &lt;KeyAttribute
+        android:scaleX=&#34;2&#34;
+        android:scaleY=&#34;2&#34;
+        android:rotation=&#34;-245&#34;
+        motion:framePosition=&#34;50&#34;
+        motion:target=&#34;@id/main_iv&#34; /&gt;
+    &lt;KeyAttribute
+        android:rotation=&#34;-445&#34;
+        motion:framePosition=&#34;75&#34;
+        motion:target=&#34;@id/main_iv&#34; /&gt;
+&lt;/KeyFrameSet&gt;
+</code></pre>
+<p><strong>Try up your app now.</strong></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Cool stuff with KeyFrames" duration="1">
+        <p>We can try some cool keyframe combinations.</p>
+<ul>
+<li>Create a new scene file : <code>scene_06.xml</code>.</li>
+<li>Change the refernce layoutDescription to point on <code>@xml/scene_06</code> :</li>
+</ul>
+<pre><code>app:layoutDescription=&#34;@xml/scene_06&#34;
+</code></pre>
+<ul>
+<li>Copy the following into <code>scene_06.xml</code>.</li>
+</ul>
+<pre><code>&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
+&lt;MotionScene
+    xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;
+    xmlns:motion=&#34;http://schemas.android.com/apk/res-auto&#34;&gt;
+
+    &lt;Transition
+        motion:constraintSetEnd=&#34;@+id/end&#34;
+        motion:constraintSetStart=&#34;@+id/start&#34;
+        motion:duration=&#34;1000&#34;&gt;
+
+    &lt;/Transition&gt;
+
+
+    &lt;ConstraintSet android:id=&#34;@+id/start&#34;&gt;
+        &lt;Constraint
+            android:id=&#34;@+id/main_iv&#34;
+            android:layout_width=&#34;180dp&#34;
+            android:layout_height=&#34;180dp&#34;
+            android:layout_marginBottom=&#34;8dp&#34;
+            motion:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+            motion:layout_constraintEnd_toEndOf=&#34;parent&#34;&gt;
+
+        &lt;/Constraint&gt;
+    &lt;/ConstraintSet&gt;
+
+    &lt;ConstraintSet android:id=&#34;@+id/end&#34;&gt;
+        &lt;Constraint
+            android:id=&#34;@+id/main_iv&#34;
+            android:layout_width=&#34;180dp&#34;
+            android:layout_height=&#34;180dp&#34;
+            android:layout_marginTop=&#34;8dp&#34;
+            motion:layout_constraintEnd_toEndOf=&#34;parent&#34;
+            motion:layout_constraintTop_toTopOf=&#34;parent&#34;&gt;
+
+        &lt;/Constraint&gt;
+    &lt;/ConstraintSet&gt;
+
+&lt;/MotionScene&gt;
+</code></pre>
+<ul>
+<li>Go to <code>activity_main.xml</code> and add the following lines :</li>
+</ul>
+<pre><code>&lt;Button
+        android:id=&#34;@+id/animate_to_start_bt&#34;
+        android:layout_width=&#34;0dp&#34;
+        android:layout_height=&#34;50dp&#34;
+        android:layout_marginBottom=&#34;10dp&#34;
+        android:text=&#34;Animate To Start&#34;
+        app:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+        app:layout_constraintEnd_toStartOf=&#34;@+id/animate_to_End_bt&#34;
+        app:layout_constraintHorizontal_bias=&#34;0.5&#34;
+        app:layout_constraintStart_toStartOf=&#34;parent&#34;/&gt;
+
+    &lt;Button
+        android:id=&#34;@+id/animate_to_End_bt&#34;
+        android:layout_width=&#34;0dp&#34;
+        android:layout_height=&#34;50dp&#34;
+        android:layout_marginBottom=&#34;10dp&#34;
+        android:text=&#34;Animate To End&#34;
+        app:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+        app:layout_constraintEnd_toEndOf=&#34;parent&#34;
+        app:layout_constraintHorizontal_bias=&#34;0.5&#34;
+        app:layout_constraintStart_toEndOf=&#34;@+id/animate_to_start_bt&#34;/&gt;
+</code></pre>
+<p>Also, in <code>activity_main.xml</code> add :</p>
+<pre><code>private void handleViews() {
+        animateToEndButton = findViewById(R.id.animate_to_End_bt);
+        animateToStartButton = findViewById(R.id.animate_to_start_bt);
+        mMotionLayout = findViewById(R.id.motionLayout_container);
+
+
+        animateToEndButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMotionLayout.transitionToEnd();
+            }
+        });
+
+        animateToStartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMotionLayout.transitionToStart();
+            }
+        });
+    }
+</code></pre>
+<p>And call handleViews() from onCreate()</p>
+<ul>
+<li>Lets add the following lines itno <code>&lt;Transition&gt;</code> :</li>
+</ul>
+<pre><code>&lt;KeyFrameSet&gt;
+    &lt;KeyPosition
+        motion:keyPositionType=&#34;parentRelative&#34;
+        motion:percentY=&#34;0.25&#34;
+        motion:percentX=&#34;0.75&#34;
+        motion:framePosition=&#34;25&#34;
+        motion:target=&#34;@id/main_iv&#34;/&gt;
+    &lt;KeyPosition
+        motion:keyPositionType=&#34;parentRelative&#34;
+        motion:percentY=&#34;0.5&#34;
+        motion:percentX=&#34;0.1&#34;
+        motion:framePosition=&#34;50&#34;
+        motion:target=&#34;@id/main_iv&#34;/&gt;
+    &lt;KeyPosition
+        motion:keyPositionType=&#34;parentRelative&#34;
+        motion:percentY=&#34;0.75&#34;
+        motion:percentX=&#34;0.75&#34;
+        motion:framePosition=&#34;75&#34;
+        motion:target=&#34;@id/main_iv&#34;/&gt;
+&lt;/KeyFrameSet&gt;
+</code></pre>
+<p><strong>Try up your app now.</strong></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Arcs" duration="1">
+        <ul>
+<li>Create a new scene file : <code>scene_07.xml</code>.</li>
+<li>Change the refernce layoutDescription to point on <code>@xml/scene_07</code> :</li>
+</ul>
+<pre><code>app:layoutDescription=&#34;@xml/scene_07&#34;
+</code></pre>
+<ul>
+<li>Copy the following into <code>scene_07.xml</code>.</li>
+</ul>
+<pre><code>&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
+&lt;MotionScene
+    xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;
+    xmlns:motion=&#34;http://schemas.android.com/apk/res-auto&#34;&gt;
+
+    &lt;Transition
+        motion:constraintSetEnd=&#34;@+id/end&#34;
+        motion:constraintSetStart=&#34;@+id/start&#34;
+        motion:duration=&#34;1000&#34;&gt;
+        &lt;OnSwipe
+            motion:touchAnchorId=&#34;@+id/main_iv&#34;
+            motion:touchAnchorSide=&#34;top&#34;
+            motion:dragDirection=&#34;dragUp&#34;/&gt;
+
+    &lt;/Transition&gt;
+
+
+    &lt;ConstraintSet android:id=&#34;@+id/start&#34;&gt;
+        &lt;Constraint
+            android:id=&#34;@+id/main_iv&#34;
+            android:layout_width=&#34;180dp&#34;
+            android:layout_height=&#34;180dp&#34;
+            android:layout_marginBottom=&#34;8dp&#34;
+            motion:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+            motion:layout_constraintEnd_toEndOf=&#34;parent&#34;&gt;
+
+        &lt;/Constraint&gt;
+    &lt;/ConstraintSet&gt;
+
+    &lt;ConstraintSet android:id=&#34;@+id/end&#34;&gt;
+        &lt;Constraint
+            android:id=&#34;@+id/main_iv&#34;
+            android:layout_width=&#34;180dp&#34;
+            android:layout_height=&#34;180dp&#34;
+            android:layout_marginTop=&#34;8dp&#34;
+            motion:layout_constraintStart_toStartOf=&#34;parent&#34;
+            motion:layout_constraintTop_toTopOf=&#34;parent&#34;
+            motion:layout_constraintBottom_toBottomOf=&#34;parent&#34;&gt;
+
+        &lt;/Constraint&gt;
+    &lt;/ConstraintSet&gt;
+
+&lt;/MotionScene&gt;
+</code></pre>
+<p>For this property, we want to see the path.</p>
+<ul>
+<li>Go to <code>activity_main.xml</code> and add the following line to the root view :</li>
+</ul>
+<pre><code>app:showPaths=&#34;true&#34;
+</code></pre>
+<ul>
+<li>Go to <code>scene_06.xml</code> and add to the following line to the <code>&lt;Constraint&gt;</code> child of  <code>&lt;ConstraintSet android:id=&#34;@+id/start&#34;&gt;</code> :</li>
+</ul>
+<pre><code>motion:pathMotionArc=&#34;startHorizontal&#34;
+</code></pre>
+<p>Like this :</p>
+<pre><code>&lt;ConstraintSet android:id=&#34;@+id/start&#34;&gt;
+    &lt;Constraint
+        motion:pathMotionArc=&#34;startHorizontal&#34;
+        android:id=&#34;@+id/main_iv&#34;
+        android:layout_width=&#34;180dp&#34;
+        android:layout_height=&#34;180dp&#34;
+        android:layout_marginBottom=&#34;8dp&#34;
+        motion:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+        motion:layout_constraintEnd_toEndOf=&#34;parent&#34;&gt;
+
+    &lt;/Constraint&gt;
+&lt;/ConstraintSet&gt;
+</code></pre>
+<p><strong>Try up your app now.</strong></p>
+<p>You can also decide that you want the arc to be only a part of the path and not all of it :</p>
+<ul>
+<li>Delete the following line from your end <code>&lt;Constraint&gt;</code>:</li>
+</ul>
+<pre><code>motion:layout_constraintStart_toStartOf=&#34;parent&#34;
+</code></pre>
+<ul>
+<li>Add the following lines to your <code>&lt;Transition&gt;</code> :</li>
+</ul>
+<pre><code>&lt;KeyFrameSet&gt;
+    &lt;KeyPosition
+        motion:keyPositionType=&#34;parentRelative&#34;
+        motion:percentY=&#34;0.5&#34;
+        motion:pathMotionArc=&#34;none&#34;
+        motion:framePosition=&#34;50&#34;
+        motion:target=&#34;@id/main_iv&#34;/&gt;
+&lt;/KeyFrameSet&gt;
+</code></pre>
+<p><strong>Try up your app now.</strong></p>
+<ul>
+<li>Chane pathMotionArc to :</li>
+</ul>
+<pre><code>motion:pathMotionArc=&#34;flip&#34;
 </code></pre>
 <p><strong>Try up your app now.</strong></p>
 
