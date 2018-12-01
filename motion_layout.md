@@ -14,16 +14,24 @@ Duration: 0:05
 
 This tutorial will walk you through the way of creating your first  MotionLayout steps. In this tutorial you will do the following, using MotionLayout:
 
-* Basic animation.
-* Apply the newly created style
-Prerequesites
-* API key
-* Npm and Node.js
-We recommend you to have npm and Node.js already installed on your machine to quickly boot up a http server.
+* Basic animation consepts in MotionLayout.
 
+* Explore the different attributes for animations.
+
+* Explore Photos monipulations in MotionLayout.
+
+* Swipes
+
+* KeyFrames
+
+* More Fun :)
+
+Hope you will enjoy the codelab.
 
 Positive
-: Note : MotionLayout is fully declarative. therefore, we will not use any code for animate
+: Note : MotionLayout is fully declarative. therefore, we will not use any code for animate.
+
+The source code for the codelab is on [Github](https://github.com/maozgal/MotionLayout).
 
 
 
@@ -44,7 +52,7 @@ The app will display a crazy Emoji and two bottons. you should see something lik
 
 Feel free to visit us on GitHub. 
 The first phase is on the [master](https://github.com/maozgal/MotionLayout/tree/master) branch
-The whole solution can be found on [solution](https://github.com/maozgal/MotionLayout/tree/solution) branch.
+The whole solution can be found on solution branch for each of the chapters
 
  
 
@@ -382,7 +390,7 @@ For each ```<Transition>``` we can define an interpolator.
     <img src="https://raw.githubusercontent.com/maozgal/MotionLayout/master/pics/Screen%20Shot%202018-11-29%20at%2010.39.39%20AM.png">
     
     
-## Pictures monipulations
+## Photos monipulations
 Duration: 0:10
 
 Images has a special set of attributes, we are going to explore some of them.

@@ -27,13 +27,17 @@
       <google-codelab-step label="Introduction" duration="1">
         <p>This tutorial will walk you through the way of creating your first  MotionLayout steps. In this tutorial you will do the following, using MotionLayout:</p>
 <ul>
-<li>Basic animation.</li>
-<li>Apply the newly created style<br>Prerequesites</li>
-<li>API key</li>
-<li>Npm and Node.js<br>We recommend you to have npm and Node.js already installed on your machine to quickly boot up a http server.</li>
+<li>Basic animation consepts in MotionLayout.</li>
+<li>Explore the different attributes for animations.</li>
+<li>Explore Photos monipulations in MotionLayout.</li>
+<li>Swipes</li>
+<li>KeyFrames</li>
+<li>More Fun :)</li>
 </ul>
-<aside class="special"><p>Note : MotionLayout is fully declarative. therefore, we will not use any code for animate</p>
+<p>Hope you will enjoy the codelab.</p>
+<aside class="special"><p>Note : MotionLayout is fully declarative. therefore, we will not use any code for animate.</p>
 </aside>
+<p>The source code for the codelab is on <a href="https://github.com/maozgal/MotionLayout" target="_blank">Github</a>.</p>
 
 
       </google-codelab-step>
@@ -47,7 +51,7 @@
 </ul>
 <p>The app will display a crazy Emoji and two bottons. you should see something like this:</p>
 <p><img style="max-width: 250.00px" src="img/788fd678a4d85c2f.png"></p>
-<p>Feel free to visit us on GitHub.<br>The first phase is on the <a href="https://github.com/maozgal/MotionLayout/tree/master" target="_blank">master</a> branch<br>The whole solution can be found on <a href="https://github.com/maozgal/MotionLayout/tree/solution" target="_blank">solution</a> branch.</p>
+<p>Feel free to visit us on GitHub.<br>The first phase is on the <a href="https://github.com/maozgal/MotionLayout/tree/master" target="_blank">master</a> branch<br>The whole solution can be found on solution branch for each of the chapters</p>
 
 
       </google-codelab-step>
@@ -329,7 +333,7 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="Pictures monipulations" duration="1">
+      <google-codelab-step label="Photos monipulations" duration="1">
         <p>Images has a special set of attributes, we are going to explore some of them.</p>
 <p>Let&#39;s go back to our image view settings :</p>
 <ul>
@@ -504,7 +508,7 @@ and the end Constraint should get :<pre><code>&lt;CustomAttribute
       <google-codelab-step label="Swipes" duration="1">
         <p>MotionLayout can handle the motion without callbacks, just by swipng back and forth the views them self.</p>
 <ul>
-<li>Lets get rid of our button in <code>activity_main.xml</code> and delete handleViews() method from<br><code>MainActivity.java</code>.</li>
+<li>Lets get rid of our buttons in <code>activity_main.xml</code> and delete handleViews() method from<br><code>MainActivity.java</code>.</li>
 <li>Create a new scene file : <code>scene_04.xml</code>.</li>
 <li>Change the refernce layoutDescription to point on <code>@xml/scene_04</code> :</li>
 </ul>
@@ -888,6 +892,66 @@ and the end Constraint should get :<pre><code>&lt;CustomAttribute
         motion:target=&#34;@id/main_iv&#34;/&gt;
 &lt;/KeyFrameSet&gt;
 </code></pre>
+<p>We can go more wild and do that :</p>
+<pre><code>&lt;Transition
+        motion:constraintSetEnd=&#34;@+id/end&#34;
+        motion:constraintSetStart=&#34;@+id/start&#34;
+        motion:duration=&#34;4000&#34;&gt;
+        &lt;KeyFrameSet&gt;
+            &lt;KeyPosition
+                motion:keyPositionType=&#34;parentRelative&#34;
+                motion:percentY=&#34;0.80&#34;
+                motion:percentX=&#34;0.80&#34;
+                motion:framePosition=&#34;2&#34;
+                motion:target=&#34;@id/main_iv&#34;/&gt;
+            &lt;KeyPosition
+                motion:keyPositionType=&#34;parentRelative&#34;
+                motion:percentY=&#34;0.60&#34;
+                motion:percentX=&#34;0.80&#34;
+                motion:framePosition=&#34;10&#34;
+                motion:target=&#34;@id/main_iv&#34;/&gt;
+            &lt;KeyPosition
+                motion:keyPositionType=&#34;parentRelative&#34;
+                motion:percentY=&#34;0.70&#34;
+                motion:percentX=&#34;1&#34;
+                motion:framePosition=&#34;15&#34;
+                motion:target=&#34;@id/main_iv&#34;/&gt;
+            &lt;KeyPosition
+                motion:keyPositionType=&#34;parentRelative&#34;
+                motion:percentY=&#34;0.80&#34;
+                motion:percentX=&#34;0.80&#34;
+                motion:framePosition=&#34;20&#34;
+                motion:target=&#34;@id/main_iv&#34;/&gt;
+
+            &lt;KeyPosition
+                motion:keyPositionType=&#34;parentRelative&#34;
+                motion:percentY=&#34;0.80&#34;
+                motion:percentX=&#34;0.20&#34;
+                motion:framePosition=&#34;25&#34;
+                motion:target=&#34;@id/main_iv&#34;/&gt;
+            &lt;KeyPosition
+                motion:keyPositionType=&#34;parentRelative&#34;
+                motion:percentY=&#34;0.90&#34;
+                motion:percentX=&#34;0.10&#34;
+                motion:framePosition=&#34;30&#34;
+                motion:target=&#34;@id/main_iv&#34;/&gt;
+            &lt;KeyPosition
+                motion:keyPositionType=&#34;parentRelative&#34;
+                motion:percentY=&#34;1&#34;
+                motion:percentX=&#34;0.20&#34;
+                motion:framePosition=&#34;35&#34;
+                motion:target=&#34;@id/main_iv&#34;/&gt;
+
+
+            &lt;KeyPosition
+                motion:keyPositionType=&#34;parentRelative&#34;
+                motion:percentY=&#34;0.2&#34;
+                motion:percentX=&#34;0.20&#34;
+                motion:framePosition=&#34;40&#34;
+                motion:target=&#34;@id/main_iv&#34;/&gt;
+        &lt;/KeyFrameSet&gt;
+    &lt;/Transition&gt;
+</code></pre>
 <p><strong>Try up your app now.</strong></p>
 
 
@@ -996,6 +1060,47 @@ and the end Constraint should get :<pre><code>&lt;CustomAttribute
 <li>Chane pathMotionArc to :</li>
 </ul>
 <pre><code>motion:pathMotionArc=&#34;flip&#34;
+</code></pre>
+<p><strong>Try up your app now.</strong></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Monitor" duration="1">
+        <p>We can control the progress of a <code>MotionLayout</code> by setProgress() method.</p>
+<ul>
+<li>Lets get rid of our buttons in <code>activity_main.xml</code>, and add a seekbar instade :</li>
+</ul>
+<pre><code>&lt;android.support.v7.widget.AppCompatSeekBar
+        android:id=&#34;@+id/seek&#34;
+        android:layout_width=&#34;match_parent&#34;
+        android:layout_height=&#34;wrap_content&#34;
+        app:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+        android:layout_marginBottom=&#34;10dp&#34;/&gt;
+</code></pre>
+<ul>
+<li>On <code>MainActivity.java</code>, change handleViews() method to :</li>
+</ul>
+<pre><code> private void handleViews() {
+        mMotionLayout = findViewById(R.id.motionLayout_container);
+        SeekBar seekBar = findViewById(R.id.seek);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                mMotionLayout.setProgress(i / 100f);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
 </code></pre>
 <p><strong>Try up your app now.</strong></p>
 
