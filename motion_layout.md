@@ -14,11 +14,11 @@ Duration: 0:05
 
 This tutorial will walk you through the way of creating your first  MotionLayout steps. In this tutorial you will do the following, using MotionLayout:
 
-* Basic animation consepts in MotionLayout.
+* Basic animation concepts in MotionLayout.
 
 * Explore the different attributes for animations.
 
-* Explore Photos monipulations in MotionLayout.
+* Explore Photos manipulations in MotionLayout.
 
 * Swipes
 
@@ -61,10 +61,20 @@ Duration: 0:10
 
 The most important this to understand in ```MotionLayout``` is the structure.
 
-When you want to animate a view in your ```MotionLayout```, you will delegate its constraints to another XML.
-This other XML is your scene.
+Positioning views in ```MotionLayout``` is divided into two:
+1.  Static view - views which are not moving will be positioned with ```ConstaintLayout``` tool set as ```MotionLayout``` is subcalssing it.
+2.  Dynamic views - these views will be decelerd by ```MotionLayout``` without position attributes. Posisioning them will be done by an external XML file, called scene.
+
+When you want to animate a view in your ```MotionLayout```, you will delegate its constraints to your scene file.
 A scene is basically the place where you describe the occurrences of your animations.
-It composites of a start state, an end state and all the movements between them.
+Each scene composites of a :
+*   Start state - on which you will describe the initial state of the dynamic veiws.
+*   End state - on which you will describe the final state of the dynamic veiws.
+*   A set of attributes which are desrtibing the occourenses of the animation between the two states.
+The system will calculate all of these parameters and handle the animation for you.
+
+To sammerize:
+<img src="https://raw.githubusercontent.com/maozgal/MotionLayout/monitor/pics/desc.png">
 
 The first thing we want to do is to note where is the scene XML.
 
