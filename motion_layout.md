@@ -62,18 +62,18 @@ Duration: 0:10
 The most important this to understand in ```MotionLayout``` is the structure.
 
 Positioning views in ```MotionLayout``` is divided into two:
-1.  Static view - views which are not moving will be positioned with ```ConstaintLayout``` tool set as ```MotionLayout``` is subcalssing it.
-2.  Dynamic views - these views will be decelerd by ```MotionLayout``` without position attributes. Posisioning them will be done by an external XML file, called scene.
+1.  Static view - views which are not moving will be positioned with ```ConstaintLayout``` toolset as ```MotionLayout``` is subclassing it.
+2.  Dynamic views - these views will be decelerated by ```MotionLayout``` without position attributes. Positioning them will be done by an external XML file, called scene.
 
 When you want to animate a view in your ```MotionLayout```, you will delegate its constraints to your scene file.
 A scene is basically the place where you describe the occurrences of your animations.
 Each scene composites of a :
-*   Start state - on which you will describe the initial state of the dynamic veiws.
-*   End state - on which you will describe the final state of the dynamic veiws.
-*   A set of attributes which are desrtibing the occourenses of the animation between the two states.
+*   Start state - on which you will describe the initial state of the dynamic views.
+*   End state - on which you will describe the final state of the dynamic views.
+*   A set of attributes which are describing the occurrences of the animation between the two states.
 The system will calculate all of these parameters and handle the animation for you.
 
-To sammerize:
+To summarize:
 <img src="https://raw.githubusercontent.com/maozgal/MotionLayout/monitor/pics/desc.png">
 
 The first thing we want to do is to note where is the scene XML.
