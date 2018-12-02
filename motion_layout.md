@@ -59,18 +59,27 @@ The whole solution can be found on solution branch for each of the chapters
 ## Basic Animation
 Duration: 0:10
 
-First thing we want to do is to denote the layout that we want to take control of several of it's view.
+The most important this to understand in ```MotionLayout``` is the structure.
+
+When you want to animate a view in your ```MotionLayout```, you will delegate its constraints to another XML.
+This other XML is your scene.
+A scene is basically the place where you describe the occurrences of your animations.
+It composites of a start state, an end state and all the movements between them.
+
+The first thing we want to do is to note where is the scene XML.
 
 This is being done by adding layoutDescription parameter to the root view, which just points to the file where the animations are being described.
 
-* Go to res -> ```activity_main.xml```, and add the following line into your MotionLayout root view : 
+* Go to res -> ```activity_main.xml```, and add the following line into your ```MotionLayout``` root view : 
 
 
 
 ``` bash
     app:layoutDescription="@xml/scene_01"
 ```
+
 The view should be looking new like this : 
+
 ``` bash
 <android.support.constraint.motion.MotionLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -84,9 +93,10 @@ The view should be looking new like this :
     tools:context=".MainActivity">
 ```
 
-Next step is to create the scene_01 file.
-* Create ```xml``` folder under res.
+Next step is to create the ```scene_01.xml``` file.
+* Create ```xml``` folder under res:
 <img src="https://raw.githubusercontent.com/maozgal/MotionLayout/solution/pics/Screen%20Shot%202018-11-27%20at%206.45.55%20PM.png">
+
 * Create ```scene_01.xml``` file inside res -> xml.
 * Copy the following content inside your ```scene_01.xml``` file:
 ``` bash
@@ -112,7 +122,7 @@ Next step is to create the scene_01 file.
 
 Explanation:
 In order to take control of an animation, we need to define a ```MotionScene```.
-MotionScene is describing the animation. in our case we will make a tranistion from point A to point B on the screen, with a duration of 1 second.
+MotionScene is describing the animation. in our case, we will make a transition from point A to point B on the screen, with a duration of 1 second.
  
 Each point is a ```ConstraintSet```.
 The animation will start at ```@+id/start```, and end at ```@+id/start```.
@@ -186,10 +196,11 @@ your ```scene_01.xml``` file should look like:
 
 Explanation:
 Take a look at the ```<Constraint>``` of ```@+id/start``` ConstraintSet,
-* We define the view on which we will want the animation to affect(```@+id/main_iv```).
-* Next, we will define it's constraints. These constraints will be affect imidiitlly, as a start stage. The current constaints are centering the view vertically and attach it to the left.
+* We define the view on which we want the animation to be affected(```@+id/main_iv```).
+* Next, we will define its constraints. These constraints will be affected immediately, as a start stage. 
+The current constraints are centering the view vertically and attach it to the left.
 
-The constaints in ```@+id/end``` are the same. only difference is attaching the view to the right.
+The constraints in ```@+id/end``` are the same. only difference is attaching the view to the right.
 
 * Go to src -> ```MainActivity.java```.
 * Add the following line of code into animateToEndButton's onClick call back:
@@ -220,7 +231,8 @@ This should look like:
         });
 ```
 
-Try and run your app now.
+**Try up your app now.**
+
 You should be able to animate the view back and forth by clicking the buttons.
 
 
@@ -234,14 +246,14 @@ Click the following button to download the source code for this codelab:
 *   Unzip the code, and then open the project.
 *   Run the app <img src="https://raw.githubusercontent.com/maozgal/MotionLayout/solution/pics/Screen%20Shot%202018-11-27%20at%203.34.27%20PM.png" width="100">
 
-The app you should be looking like this:
+The app should be looking like this:
 
 <img src="https://raw.githubusercontent.com/maozgal/MotionLayout/attributes_solution/pics/device-2018-11-28-184148.png" width="250">
 
 
 Pay attention to the following changes.
 
-*   We are using a View instade of an ImageView in MainActivity.xml.
+*   We are using a ```View``` instead of an ```ImageView``` in ```MainActivity.xml```.
 
 ``` bash
  <View
@@ -252,12 +264,12 @@ Pay attention to the following changes.
         />
 ```
 *   We created a new scene file : scene_02.xml.
-*   We changed the refernce layoutDescription to point on @xml/scene_02 : 
+*   We changed the reference layoutDescription to point on @xml/scene_02 : 
 
 ``` bash
 app:layoutDescription="@xml/scene_02"
 ```
-*   In scene_02.xml we constrainted our view to center horizontal + bottom at start, and center horizontal + top at the end of the animation.
+*   In scene_02.xml we constrained our view to center horizontal + bottom at the start, and center horizontal + top at the end of the animation.
 
 ``` bash
 <ConstraintSet android:id="@+id/start">
@@ -393,13 +405,13 @@ For each ```<Transition>``` we can define an interpolator.
 ## Photos monipulations
 Duration: 0:10
 
-Images has a special set of attributes, we are going to explore some of them.
+Images have a special set of attributes, we are going to explore some of them.
 
 Let's go back to our image view settings : 
 
 *   [Download](https://github.com/maozgal/MotionLayout/raw/image_manipulation/app/src/main/res/drawable/icon2.png) a new image and add it into your drawable folder.
 
-*   We are using an ```ImageFilterView``` instade of a ```View``` in MainActivity.xml.
+*   We are using an ```ImageFilterView``` instead of a ```View``` in MainActivity.xml.
 
 ``` bash
  <android.support.constraint.utils.ImageFilterView
@@ -409,7 +421,7 @@ Let's go back to our image view settings :
         android:layout_height="64dp"/>
 ```
 *   We created a new scene file : ```scene_03.xml```.
-*   We changed the refernce layoutDescription to point on ```@xml/scene_03``` : 
+*   We changed the reference layoutDescription to point on ```@xml/scene_03``` : 
 
 ``` bash
 app:layoutDescription="@xml/scene_03"
@@ -536,7 +548,7 @@ You can also checkout [image_manipulation] (https://github.com/maozgal/MotionLay
     
     **Try up your app now.**
     
-* Altering an image with fade : 
+* Altering an image with a fade : 
     *   in ```activity_main.xml```, Add altSrc to your ```ImageFilterView``` : 
     
     ``` bash
@@ -587,14 +599,17 @@ You can also checkout [image_manipulation] (https://github.com/maozgal/MotionLay
 ## Swipes
 Duration: 0:10
 
-MotionLayout can handle the motion without callbacks, just by swipng back and forth the views them self.
+MotionLayout can handle the motion without any callbacks in your code. You can specify the dragging option in your XML scene.
+The user will just swipe the views back and forth in order to animate them.
+This swipe option isn't just to follow your finger. It also takes into account the acceleration and velocity.
+
+Let's try it now.
 
 
-*   Lets get rid of our buttons in ```activity_main.xml``` and delete handleViews() method from
+*   Let's get rid of our buttons in ```activity_main.xml``` and delete handleViews() method from
 ```MainActivity.java```.
 
-*   Create a new scene file : ```scene_04.xml```.
-*   Change the refernce layoutDescription to point on ```@xml/scene_04``` : 
+* : 
 
 ``` bash
 app:layoutDescription="@xml/scene_04"
@@ -689,16 +704,18 @@ app:layoutDescription="@xml/scene_04"
 ## KeyFrame
 Duration: 0:10
 
-Until now, we defined a pair of start and end states, and made an animations between them.
-You might ask your self, what if i want more than two states?
+Until now, we defined a pair of start and end states and made animations between them.
+You might ask your self, what if I want more than two states?
 
-This is what KeyFrame are all about.
+This is where KeyFrames are powerful.
 
-On this slide we will take an image from bottom to top (cetered horizontally), but this time when the image will be in the middle of the animation path, it will be constraint to the start of the view.
+The main idea of  KeyFrame is to give you tools to manipulate the animation in terms of size, color, rotation etc,  while it is been moving from the state 'start' to state 'end'.
+
+On this slide, we will take an ```ImageView``` from bottom to top (centered horizontally), but this time we will add a KeyFrame that changes the bottom-up linear path into a diagonal path that goes from bottom-end to center-start and then to up-end.
 
 
-*   Create a new scene file : ```scene_05.xml```.
-*   Change the refernce layoutDescription to point on ```@xml/scene_05``` : 
+*   Create a new scene file: ```scene_05.xml```.
+*   Change the reference layoutDescription to point on ```@xml/scene_05``` : 
 
 ``` bash
 app:layoutDescription="@xml/scene_05"
@@ -768,7 +785,7 @@ app:layoutDescription="@xml/scene_05"
 
 Explanation : 
 *   ```percentX``` = Left of the parent.
-*   ```framePosition``` = When on the timeline the action take place.
+*   ```framePosition``` = When on the timeline the action takes place.
 *   ```target``` = The view on which the action will affect.
 
 
@@ -798,7 +815,9 @@ Let's try a more complicated ```KeyFrameSet```.
 
 **Try up your app now.**
 
-You can also add some other attributes :
+Other than we have ```KeyAttribute``` which allows you to play around with basic view attributes such as size, color, rotation etc.
+
+Let's enlarge our view twice its size and rotate it -45 degrees at halfway of the animation:
 
 *   Replace your ```KeyFrameSet``` with the following :
 
@@ -819,6 +838,7 @@ You can also add some other attributes :
         motion:percentX="0"
         motion:framePosition="70"
         motion:target="@id/main_iv"/>
+        
     <KeyAttribute
         android:scaleX="2"
         android:scaleY="2"
@@ -830,10 +850,7 @@ You can also add some other attributes :
 
 **Try up your app now.**
 
-And if we will go wiled : 
-
-You can also add some other attributes :
-
+And if we will go wild :
 
 *   Replace your ```KeyFrameSet``` with the following :
 
@@ -879,7 +896,7 @@ Duration: 0:10
 We can try some cool keyframe combinations.
 
 *   Create a new scene file : ```scene_06.xml```.
-*   Change the refernce layoutDescription to point on ```@xml/scene_06``` : 
+*   Change the reference layoutDescription to point on ```@xml/scene_06``` : 
 
 ``` bash
 app:layoutDescription="@xml/scene_06"
@@ -981,7 +998,7 @@ private void handleViews() {
     
 And call handleViews() from onCreate()
 
-*   Lets add the following lines itno ```<Transition>``` : 
+*   Let's add the following lines itno ```<Transition>``` : 
 
 ``` bash
 <KeyFrameSet>
@@ -1006,7 +1023,7 @@ And call handleViews() from onCreate()
 </KeyFrameSet>
 ```
 
-We can go more wild and do that : 
+We can go wilder and do that : 
 
 
 ``` bash
@@ -1075,9 +1092,12 @@ We can go more wild and do that :
 ## Arcs
 Duration: 0:10
 
+MotionLayout offers you the ability to transform a linear path between to points to an arch.
+
+<img src="https://raw.githubusercontent.com/maozgal/MotionLayout/arcs/pics/arcs.png" width="500">
 
 *   Create a new scene file : ```scene_07.xml```.
-*   Change the refernce layoutDescription to point on ```@xml/scene_07``` : 
+*   Change the reference layoutDescription to point on ```@xml/scene_07``` : 
 
 ``` bash
 app:layoutDescription="@xml/scene_07"
@@ -1131,7 +1151,7 @@ app:layoutDescription="@xml/scene_07"
 </MotionScene>
 ```
 
-For this property, we want to see the path.
+For this property, we want to actually see the path.
 * Go to ```activity_main.xml``` and add the following line to the root view :
 
 ``` bash
@@ -1164,7 +1184,7 @@ Like this :
 
 **Try up your app now.**
 
-You can also decide that you want the arc to be only a part of the path and not all of it :
+You can also decide that you want the arch to be only a part of the path and not all of it :
 
 * Delete the following line from your end ```<Constraint>```: 
 
@@ -1199,10 +1219,14 @@ motion:pathMotionArc="flip"
 ## Monitor
 Duration: 0:10
 
+The last feature we will present is a tool that lets you monitor your animation manually.
+We will pass the control of the animation to a ```Seekbar```. This way you can understand exactly what is happening in every frame of your scene.
+
+<img src="https://raw.githubusercontent.com/maozgal/MotionLayout/monitor/pics/vid.gif" width="250">
 
 We can control the progress of a ```MotionLayout``` by setProgress() method.
 
-*   Lets get rid of our buttons in ```activity_main.xml```, and add a seekbar instade : 
+*   Let's get rid of our buttons in ```activity_main.xml```, and add a seekbar instead : 
 
 ``` bash
 <android.support.v7.widget.AppCompatSeekBar

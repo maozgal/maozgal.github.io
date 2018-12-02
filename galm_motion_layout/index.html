@@ -57,10 +57,12 @@
       </google-codelab-step>
     
       <google-codelab-step label="Basic Animation" duration="1">
-        <p>First thing we want to do is to denote the layout that we want to take control of several of it&#39;s view.</p>
+        <p>The most important this to understand in <code>MotionLayout</code> is the structure.</p>
+<p>When you want to animate a view in your <code>MotionLayout</code>, you will delegate its constraints to another XML.<br>This other XML is your scene.<br>A scene is basically the place where you describe the occurrences of your animations.<br>It composites of a start state, an end state and all the movements between them.</p>
+<p>The first thing we want to do is to note where is the scene XML.</p>
 <p>This is being done by adding layoutDescription parameter to the root view, which just points to the file where the animations are being described.</p>
 <ul>
-<li>Go to res -&gt; <code>activity_main.xml</code>, and add the following line into your MotionLayout root view :</li>
+<li>Go to res -&gt; <code>activity_main.xml</code>, and add the following line into your <code>MotionLayout</code> root view :</li>
 </ul>
 <pre><code>    app:layoutDescription=&#34;@xml/scene_01&#34;
 </code></pre>
@@ -76,9 +78,9 @@
     app:layoutDescription=&#34;@xml/scene_01&#34;
     tools:context=&#34;.MainActivity&#34;&gt;
 </code></pre>
-<p>Next step is to create the scene_01 file.</p>
+<p>Next step is to create the <code>scene_01.xml</code> file.</p>
 <ul>
-<li>Create <code>xml</code> folder under res.<br><img src="img/2a9c972731328abf.png"></li>
+<li>Create <code>xml</code> folder under res:<br><img src="img/2a9c972731328abf.png"></li>
 <li>Create <code>scene_01.xml</code> file inside res -&gt; xml.</li>
 <li>Copy the following content inside your <code>scene_01.xml</code> file:<pre><code>&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
 &lt;MotionScene
@@ -101,7 +103,7 @@
 </code></pre>
 </li>
 </ul>
-<p>Explanation:<br>In order to take control of an animation, we need to define a <code>MotionScene</code>.<br>MotionScene is describing the animation. in our case we will make a tranistion from point A to point B on the screen, with a duration of 1 second.</p>
+<p>Explanation:<br>In order to take control of an animation, we need to define a <code>MotionScene</code>.<br>MotionScene is describing the animation. in our case, we will make a transition from point A to point B on the screen, with a duration of 1 second.</p>
 <p>Each point is a <code>ConstraintSet</code>.<br>The animation will start at <code>@+id/start</code>, and end at <code>@+id/start</code>.</p>
 <ul>
 <li>Copy the following content inside <code>@+id/start</code>:<pre><code>&lt;Constraint
@@ -165,10 +167,10 @@
 </code></pre>
 <p>Explanation:<br>Take a look at the <code>&lt;Constraint&gt;</code> of <code>@+id/start</code> ConstraintSet,</p>
 <ul>
-<li>We define the view on which we will want the animation to affect(<code>@+id/main_iv</code>).</li>
-<li>Next, we will define it&#39;s constraints. These constraints will be affect imidiitlly, as a start stage. The current constaints are centering the view vertically and attach it to the left.</li>
+<li>We define the view on which we want the animation to be affected(<code>@+id/main_iv</code>).</li>
+<li>Next, we will define its constraints. These constraints will be affected immediately, as a start stage.<br>The current constraints are centering the view vertically and attach it to the left.</li>
 </ul>
-<p>The constaints in <code>@+id/end</code> are the same. only difference is attaching the view to the right.</p>
+<p>The constraints in <code>@+id/end</code> are the same. only difference is attaching the view to the right.</p>
 <ul>
 <li>Go to src -&gt; <code>MainActivity.java</code>.</li>
 <li>Add the following line of code into animateToEndButton&#39;s onClick call back:</li>
@@ -195,7 +197,8 @@
             }
         });
 </code></pre>
-<p>Try and run your app now.<br>You should be able to animate the view back and forth by clicking the buttons.</p>
+<p><strong>Try up your app now.</strong></p>
+<p>You should be able to animate the view back and forth by clicking the buttons.</p>
 
 
       </google-codelab-step>
@@ -206,11 +209,11 @@
 <li>Unzip the code, and then open the project.</li>
 <li>Run the app <img style="max-width: 100.00px" src="img/b5a3122e7e62d6db.png"></li>
 </ul>
-<p>The app you should be looking like this:</p>
+<p>The app should be looking like this:</p>
 <p><img style="max-width: 250.00px" src="img/f5cedd772bbafaf2.png"></p>
 <p>Pay attention to the following changes.</p>
 <ul>
-<li>We are using a View instade of an ImageView in MainActivity.xml.</li>
+<li>We are using a <code>View</code> instead of an <code>ImageView</code> in <code>MainActivity.xml</code>.</li>
 </ul>
 <pre><code> &lt;View
         android:id=&#34;@+id/main_iv&#34;
@@ -221,12 +224,12 @@
 </code></pre>
 <ul>
 <li>We created a new scene file : scene_02.xml.</li>
-<li>We changed the refernce layoutDescription to point on @xml/scene_02 :</li>
+<li>We changed the reference layoutDescription to point on @xml/scene_02 :</li>
 </ul>
 <pre><code>app:layoutDescription=&#34;@xml/scene_02&#34;
 </code></pre>
 <ul>
-<li>In scene_02.xml we constrainted our view to center horizontal + bottom at start, and center horizontal + top at the end of the animation.</li>
+<li>In scene_02.xml we constrained our view to center horizontal + bottom at the start, and center horizontal + top at the end of the animation.</li>
 </ul>
 <pre><code>&lt;ConstraintSet android:id=&#34;@+id/start&#34;&gt;
         &lt;Constraint
@@ -334,11 +337,11 @@
       </google-codelab-step>
     
       <google-codelab-step label="Photos monipulations" duration="1">
-        <p>Images has a special set of attributes, we are going to explore some of them.</p>
+        <p>Images have a special set of attributes, we are going to explore some of them.</p>
 <p>Let&#39;s go back to our image view settings :</p>
 <ul>
 <li><a href="https://github.com/maozgal/MotionLayout/raw/image_manipulation/app/src/main/res/drawable/icon2.png" target="_blank">Download</a> a new image and add it into your drawable folder.</li>
-<li>We are using an <code>ImageFilterView</code> instade of a <code>View</code> in MainActivity.xml.</li>
+<li>We are using an <code>ImageFilterView</code> instead of a <code>View</code> in MainActivity.xml.</li>
 </ul>
 <pre><code> &lt;android.support.constraint.utils.ImageFilterView
         android:id=&#34;@+id/main_iv&#34;
@@ -348,7 +351,7 @@
 </code></pre>
 <ul>
 <li>We created a new scene file : <code>scene_03.xml</code>.</li>
-<li>We changed the refernce layoutDescription to point on <code>@xml/scene_03</code> :</li>
+<li>We changed the reference layoutDescription to point on <code>@xml/scene_03</code> :</li>
 </ul>
 <pre><code>app:layoutDescription=&#34;@xml/scene_03&#34;
 </code></pre>
@@ -456,7 +459,7 @@ and the end Constraint should get :<pre><code>&lt;CustomAttribute
             motion:customFloatValue=&#34;2&#34; /&gt;
 </code></pre>
 <strong>Try up your app now.</strong></li>
-<li>Altering an image with fade :<ul>
+<li>Altering an image with a fade :<ul>
 <li>in <code>activity_main.xml</code>, Add altSrc to your <code>ImageFilterView</code> :<br><br></li>
 </ul>
 <pre><code>&lt;android.support.constraint.utils.ImageFilterView
@@ -506,11 +509,10 @@ and the end Constraint should get :<pre><code>&lt;CustomAttribute
       </google-codelab-step>
     
       <google-codelab-step label="Swipes" duration="1">
-        <p>MotionLayout can handle the motion without callbacks, just by swipng back and forth the views them self.</p>
+        <p>MotionLayout can handle the motion without any callbacks in your code. You can specify the dragging option in your XML scene.<br>The user will just swipe the views back and forth in order to animate them.<br>This swipe option isn&#39;t just to follow your finger. It also takes into account the acceleration and velocity.</p>
+<p>Let&#39;s try it now.</p>
 <ul>
-<li>Lets get rid of our buttons in <code>activity_main.xml</code> and delete handleViews() method from<br><code>MainActivity.java</code>.</li>
-<li>Create a new scene file : <code>scene_04.xml</code>.</li>
-<li>Change the refernce layoutDescription to point on <code>@xml/scene_04</code> :</li>
+<li>Let&#39;s get rid of our buttons in <code>activity_main.xml</code> and delete handleViews() method from<br><code>MainActivity.java</code>.</li>
 </ul>
 <pre><code>app:layoutDescription=&#34;@xml/scene_04&#34;
 </code></pre>
@@ -602,12 +604,13 @@ and the end Constraint should get :<pre><code>&lt;CustomAttribute
       </google-codelab-step>
     
       <google-codelab-step label="KeyFrame" duration="1">
-        <p>Until now, we defined a pair of start and end states, and made an animations between them.<br>You might ask your self, what if i want more than two states?</p>
-<p>This is what KeyFrame are all about.</p>
-<p>On this slide we will take an image from bottom to top (cetered horizontally), but this time when the image will be in the middle of the animation path, it will be constraint to the start of the view.</p>
+        <p>Until now, we defined a pair of start and end states and made animations between them.<br>You might ask your self, what if I want more than two states?</p>
+<p>This is where KeyFrames are powerful.</p>
+<p>The main idea of  KeyFrame is to give you tools to manipulate the animation in terms of size, color, rotation etc,  while it is been moving from the state ‘start&#39; to state ‘end&#39;.</p>
+<p>On this slide, we will take an <code>ImageView</code> from bottom to top (centered horizontally), but this time we will add a KeyFrame that changes the bottom-up linear path into a diagonal path that goes from bottom-end to center-start and then to up-end.</p>
 <ul>
-<li>Create a new scene file : <code>scene_05.xml</code>.</li>
-<li>Change the refernce layoutDescription to point on <code>@xml/scene_05</code> :</li>
+<li>Create a new scene file: <code>scene_05.xml</code>.</li>
+<li>Change the reference layoutDescription to point on <code>@xml/scene_05</code> :</li>
 </ul>
 <pre><code>app:layoutDescription=&#34;@xml/scene_05&#34;
 </code></pre>
@@ -673,7 +676,7 @@ and the end Constraint should get :<pre><code>&lt;CustomAttribute
 <p>Explanation :</p>
 <ul>
 <li><code>percentX</code> = Left of the parent.</li>
-<li><code>framePosition</code> = When on the timeline the action take place.</li>
+<li><code>framePosition</code> = When on the timeline the action takes place.</li>
 <li><code>target</code> = The view on which the action will affect.</li>
 </ul>
 <p>Let&#39;s try a more complicated <code>KeyFrameSet</code>.</p>
@@ -699,7 +702,8 @@ and the end Constraint should get :<pre><code>&lt;CustomAttribute
 &lt;/KeyFrameSet&gt;
 </code></pre>
 <p><strong>Try up your app now.</strong></p>
-<p>You can also add some other attributes :</p>
+<p>Other than we have <code>KeyAttribute</code> which allows you to play around with basic view attributes such as size, color, rotation etc.</p>
+<p>Let&#39;s enlarge our view twice its size and rotate it -45 degrees at halfway of the animation:</p>
 <ul>
 <li>Replace your <code>KeyFrameSet</code> with the following :</li>
 </ul>
@@ -719,6 +723,7 @@ and the end Constraint should get :<pre><code>&lt;CustomAttribute
         motion:percentX=&#34;0&#34;
         motion:framePosition=&#34;70&#34;
         motion:target=&#34;@id/main_iv&#34;/&gt;
+        
     &lt;KeyAttribute
         android:scaleX=&#34;2&#34;
         android:scaleY=&#34;2&#34;
@@ -728,8 +733,7 @@ and the end Constraint should get :<pre><code>&lt;CustomAttribute
 &lt;/KeyFrameSet&gt;
 </code></pre>
 <p><strong>Try up your app now.</strong></p>
-<p>And if we will go wiled :</p>
-<p>You can also add some other attributes :</p>
+<p>And if we will go wild :</p>
 <ul>
 <li>Replace your <code>KeyFrameSet</code> with the following :</li>
 </ul>
@@ -774,7 +778,7 @@ and the end Constraint should get :<pre><code>&lt;CustomAttribute
         <p>We can try some cool keyframe combinations.</p>
 <ul>
 <li>Create a new scene file : <code>scene_06.xml</code>.</li>
-<li>Change the refernce layoutDescription to point on <code>@xml/scene_06</code> :</li>
+<li>Change the reference layoutDescription to point on <code>@xml/scene_06</code> :</li>
 </ul>
 <pre><code>app:layoutDescription=&#34;@xml/scene_06&#34;
 </code></pre>
@@ -869,7 +873,7 @@ and the end Constraint should get :<pre><code>&lt;CustomAttribute
 </code></pre>
 <p>And call handleViews() from onCreate()</p>
 <ul>
-<li>Lets add the following lines itno <code>&lt;Transition&gt;</code> :</li>
+<li>Let&#39;s add the following lines itno <code>&lt;Transition&gt;</code> :</li>
 </ul>
 <pre><code>&lt;KeyFrameSet&gt;
     &lt;KeyPosition
@@ -892,7 +896,7 @@ and the end Constraint should get :<pre><code>&lt;CustomAttribute
         motion:target=&#34;@id/main_iv&#34;/&gt;
 &lt;/KeyFrameSet&gt;
 </code></pre>
-<p>We can go more wild and do that :</p>
+<p>We can go wilder and do that :</p>
 <pre><code>&lt;Transition
         motion:constraintSetEnd=&#34;@+id/end&#34;
         motion:constraintSetStart=&#34;@+id/start&#34;
@@ -958,9 +962,11 @@ and the end Constraint should get :<pre><code>&lt;CustomAttribute
       </google-codelab-step>
     
       <google-codelab-step label="Arcs" duration="1">
-        <ul>
+        <p>MotionLayout offers you the ability to transform a linear path between to points to an arch.</p>
+<p><img style="max-width: 500.00px" src="img/cb61f4aabbe0e94f.png"></p>
+<ul>
 <li>Create a new scene file : <code>scene_07.xml</code>.</li>
-<li>Change the refernce layoutDescription to point on <code>@xml/scene_07</code> :</li>
+<li>Change the reference layoutDescription to point on <code>@xml/scene_07</code> :</li>
 </ul>
 <pre><code>app:layoutDescription=&#34;@xml/scene_07&#34;
 </code></pre>
@@ -1011,7 +1017,7 @@ and the end Constraint should get :<pre><code>&lt;CustomAttribute
 
 &lt;/MotionScene&gt;
 </code></pre>
-<p>For this property, we want to see the path.</p>
+<p>For this property, we want to actually see the path.</p>
 <ul>
 <li>Go to <code>activity_main.xml</code> and add the following line to the root view :</li>
 </ul>
@@ -1037,7 +1043,7 @@ and the end Constraint should get :<pre><code>&lt;CustomAttribute
 &lt;/ConstraintSet&gt;
 </code></pre>
 <p><strong>Try up your app now.</strong></p>
-<p>You can also decide that you want the arc to be only a part of the path and not all of it :</p>
+<p>You can also decide that you want the arch to be only a part of the path and not all of it :</p>
 <ul>
 <li>Delete the following line from your end <code>&lt;Constraint&gt;</code>:</li>
 </ul>
@@ -1067,9 +1073,11 @@ and the end Constraint should get :<pre><code>&lt;CustomAttribute
       </google-codelab-step>
     
       <google-codelab-step label="Monitor" duration="1">
-        <p>We can control the progress of a <code>MotionLayout</code> by setProgress() method.</p>
+        <p>The last feature we will present is a tool that lets you monitor your animation manually.<br>We will pass the control of the animation to a <code>Seekbar</code>. This way you can understand exactly what is happening in every frame of your scene.</p>
+<p><img style="max-width: 250.00px" src="img/ed00061949edc964.png"></p>
+<p>We can control the progress of a <code>MotionLayout</code> by setProgress() method.</p>
 <ul>
-<li>Lets get rid of our buttons in <code>activity_main.xml</code>, and add a seekbar instade :</li>
+<li>Let&#39;s get rid of our buttons in <code>activity_main.xml</code>, and add a seekbar instead :</li>
 </ul>
 <pre><code>&lt;android.support.v7.widget.AppCompatSeekBar
         android:id=&#34;@+id/seek&#34;
