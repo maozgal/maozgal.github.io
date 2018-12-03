@@ -1,3 +1,3 @@
 # maozgal.github.io
 
-* MotionLayout codelab - https://maozgal.github.io/galm_motion_layout/#0
+* MotionLayout codelab - [https://maozgal.github.io/galm_motion_layout/#0](https://maozgal.github.io/galm_motion_layout/#0)
