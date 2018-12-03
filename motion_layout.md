@@ -9,7 +9,7 @@ environments: Android
 # Some MotionLayout Crafts
 
 ## Introduction
-Duration: 0:05
+Duration: 1:00
 
 
 This tutorial will walk you through the way of creating your first  MotionLayout steps. In this tutorial you will do the following, using MotionLayout:
@@ -36,7 +36,7 @@ The source code for the codelab is on [Github](https://github.com/maozgal/Motion
 
 
 ## Setup Your Environment
-Duration: 0:10
+Duration: 3:00
 
 In this step, you will download the code for the entire codelab and then run a simple example app.
 
@@ -57,7 +57,7 @@ The whole solution can be found on solution branch for each of the chapters
  
 
 ## Basic Animation
-Duration: 0:10
+Duration: 8:00
 
 The most important this to understand in ```MotionLayout``` is the structure.
 
@@ -248,7 +248,7 @@ You should be able to animate the view back and forth by clicking the buttons.
 
 
 ## Attributes
-Duration: 0:10
+Duration: 5:00
 
 Click the following button to download the source code for this codelab:
   [Download SDK](https://github.com/maozgal/MotionLayout/archive/attributes.zip)
@@ -401,7 +401,7 @@ android:layout_height="164dp"
 
 
 ## Interpolations
-Duration: 0:10
+Duration: 1:00
 
 A word about interpolations.
 
@@ -413,7 +413,7 @@ For each ```<Transition>``` we can define an interpolator.
     
     
 ## Photos monipulations
-Duration: 0:10
+Duration: 5:00
 
 Images have a special set of attributes, we are going to explore some of them.
 
@@ -607,7 +607,7 @@ You can also checkout [image_manipulation] (https://github.com/maozgal/MotionLay
     **Try up your app now.**
     
 ## Swipes
-Duration: 0:10
+Duration: 4:00
 
 MotionLayout can handle the motion without any callbacks in your code. You can specify the dragging option in your XML scene.
 The user will just swipe the views back and forth in order to animate them.
@@ -712,7 +712,7 @@ app:layoutDescription="@xml/scene_04"
  **Try up your app now.**
 
 ## KeyFrame
-Duration: 0:10
+Duration: 7:00
 
 Until now, we defined a pair of start and end states and made animations between them.
 You might ask your self, what if I want more than two states?
@@ -901,7 +901,7 @@ And if we will go wild :
 **Try up your app now.**
 
 ## Cool stuff with KeyFrames
-Duration: 0:10
+Duration: 3:00
 
 We can try some cool keyframe combinations.
 
@@ -1100,7 +1100,7 @@ We can go wilder and do that :
 **Try up your app now.**
 
 ## Arcs
-Duration: 0:10
+Duration: 5:00
 
 MotionLayout offers you the ability to transform a linear path between to points to an arch.
 
@@ -1227,7 +1227,7 @@ motion:pathMotionArc="flip"
 **Try up your app now.**
 
 ## Monitor
-Duration: 0:10
+Duration: 3:00
 
 The last feature we will present is a tool that lets you monitor your animation manually.
 We will pass the control of the animation to a ```Seekbar```. This way you can understand exactly what is happening in every frame of your scene.
