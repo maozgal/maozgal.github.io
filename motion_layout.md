@@ -321,13 +321,13 @@ android:layout_height="164dp"
 **Try up your app now.**
 
 *   Alpha :
-    *   Add the following ```CustomAttribute``` into your start ```Constraint```
+    *   Add the following attribute into your start ```Constraint```
 
         ``` bash
         android:alpha="1.0"
         ```
     
-    *   Add the following ```CustomAttribute``` into your end ```Constraint```
+    *   Add the following attribute into your end ```Constraint```
 
         ``` bash
         android:alpha="0.5"
@@ -335,13 +335,13 @@ android:layout_height="164dp"
 **Try up your app now.**
 
 *   Rotation :
-    *   Add the following ```CustomAttribute``` into your start ```Constraint```
+    *   Add the following attribute into your start ```Constraint```
 
         ``` bash
         android:rotation="0.0"
         ```
     
-    *   Add the following ```CustomAttribute``` into your end ```Constraint```
+    *   Add the following attribute into your end ```Constraint```
 
         ``` bash
         android:rotation="-720"
@@ -349,13 +349,13 @@ android:layout_height="164dp"
 **Try up your app now.**
 
 *   Translation :
-    *   Add the following ```CustomAttribute``` into your start ```Constraint```
+    *   Add the following attribute into your start ```Constraint```
 
         ``` bash
         android:translationX="0dp"
         ```
     
-    *   Add the following ```CustomAttribute``` into your end ```Constraint```
+    *   Add the following attribute into your end ```Constraint```
 
         ``` bash
         android:translationX="100dp"
@@ -1274,3 +1274,14 @@ We can control the progress of a ```MotionLayout``` by setProgress() method.
 ```
 
 **Try up your app now.**
+
+
+## Project animation
+Duration: 60:00
+
+Now is your turn :)
+
+You are going to build the following animation:
+
+
+<img src="https://raw.githubusercontent.com/maozgal/MotionLayout/freestyle/pics/anim.gif" width="250">
