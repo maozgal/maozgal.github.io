@@ -51,8 +51,7 @@ The app will display a crazy Emoji and two bottons. You should see something lik
 <img src="https://raw.githubusercontent.com/maozgal/MotionLayout/master/pics/device-2018-11-27-095241.png" width="250">
 
 Feel free to visit us on GitHub. 
-The first phase is on the [master](https://github.com/maozgal/MotionLayout/tree/master) branch
-The entire solution can be found on the ```solution``` branch for each of the chapters
+The first phase is on the [master](https://github.com/maozgal/MotionLayout/tree/master) branch.
 
 ## Basic Animation
 Duration: 8:00
@@ -136,7 +135,7 @@ In order to take control of an animation, you need to define a ```MotionScene```
 MotionScene is the entity describing the animation. in your case, you'll make a transition from point A to point B on the screen, with a duration of 1 second.
  
 Every point is a ```ConstraintSet```.
-The animation will start at ```@+id/start```, and end at ```@+id/start```.
+The animation will start at ```@+id/start```, and end at ```@+id/end```.
  
 * Paste the following content inside ```@+id/start```:
 ``` xml
@@ -209,7 +208,7 @@ Explanation:
 Take a look at the ```<Constraint>``` of the ```@+id/start``` ConstraintSet,
 
 * You define the view on which you want the animation to run(```@+id/main_iv```).
-* Next, you define its constraints. These constraints will be reflected immediately, as the ```start``` state. 
+* Next, you define its constraints.
 The current constraints are centering the view vertically and attaching it to the left.
 
 The constraints in ```@+id/end``` are the same, with the only difference being the view is attached to the right.
@@ -245,12 +244,12 @@ Your onClick listeners should look like this:
 
 **Run your app**
 
-Run the app and tap the button - the views should animate back and forth, as expected.
+Run the app and tap the buttons - the views should animate back and forth, as expected.
 
 ## Attributes
 Duration: 5:00
 
-Click the following button to download the source code for this codelab:
+Click the following button to download the source code for this chapter:
   [Download Code Lab sources](https://github.com/maozgal/MotionLayout/archive/attributes.zip)
 
 *   Unzip the code and open the project.
@@ -417,7 +416,7 @@ Go back to your image view settings :
 
 *   [Download](https://github.com/maozgal/MotionLayout/raw/image_manipulation/app/src/main/res/drawable/icon2.png) this new image and add it to your ```drawable``` folder.
 
-*   Next, you use an ```ImageFilterView``` instead of a ```View``` in MainActivity.xml.
+*   Next, use an ```ImageFilterView``` instead of a ```View``` in ```MainActivity.xml```.
 
 ``` xml
  <android.support.constraint.utils.ImageFilterView
@@ -426,8 +425,8 @@ Go back to your image view settings :
         android:layout_width="64dp"
         android:layout_height="64dp"/>
 ```
-*   You create a new scene file: ```scene_03.xml```.
-*   You change the layoutDescription reference to point to ```@xml/scene_03``` : 
+*   Create a new scene file: ```scene_03.xml```.
+*   Change the layoutDescription reference to point to ```@xml/scene_03``` : 
 
 ``` xml
 app:layoutDescription="@xml/scene_03"
@@ -613,7 +612,6 @@ Let's try it now.
 
 *   Get rid of your buttons in ```activity_main.xml``` and remove ```handleViews()``` from ```MainActivity.java```.
 
-* : 
 
 ``` xml
 app:layoutDescription="@xml/scene_04"
