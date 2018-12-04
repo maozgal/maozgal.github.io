@@ -317,27 +317,26 @@ android:layout_height="164dp"
 **Run your app**
 
 *   Alpha :
-    *   Add the following attribute to your start ```Constraint```
+Add the following attribute to your start ```Constraint```
 
         ``` xml
         android:alpha="1.0"
         ```
     
-    *   Add the following attribute to your end ```Constraint```
-
+Add the following attribute to your end ```Constraint```
         ``` xml
         android:alpha="0.5"
         ```
 **Run your app**
 
 *   Rotation :
-    *   Add the following attribute to your start ```Constraint```
+Add the following attribute to your start ```Constraint```
 
         ``` xml
         android:rotation="0.0"
         ```
     
-    *   Add the following attribute to your end ```Constraint```
+Add the following attribute to your end ```Constraint```
 
         ``` xml
         android:rotation="-720"
@@ -345,13 +344,13 @@ android:layout_height="164dp"
 **Run your app**
 
 *   Translation :
-    *   Add the following attribute to your start ```Constraint```
+Add the following attribute to your start ```Constraint```
 
         ``` xml
         android:translationX="0dp"
         ```
     
-    *   Add the following attribute to your end ```Constraint```
+Add the following attribute to your end ```Constraint```
 
         ``` xml
         android:translationX="100dp"
