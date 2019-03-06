@@ -50,7 +50,7 @@ The app will display a crazy Emoji and two bottons. You should see something lik
 
 <img src="https://raw.githubusercontent.com/maozgal/MotionLayout/master/pics/device-2018-11-27-095241.png" width="250">
 
-Feel free to visit us on GitHub. 
+Feel free to visit us on GitHub.
 The first phase is on the [master](https://github.com/maozgal/MotionLayout/tree/master) branch.
 
 ## Basic Animation
@@ -81,13 +81,13 @@ The first thing you'll want to do is to note where is the scene XML.
 
 You'll do that by adding the layoutDescription parameter to the root view, which just points to the file where the animations are being described.
 
-* Go to res -> ```activity_main.xml```, and add the following line into your ```MotionLayout``` root view : 
+* Go to res -> ```activity_main.xml```, and add the following line into your ```MotionLayout``` root view :
 
 ``` xml
     app:layoutDescription="@xml/scene_01"
 ```
 
-Your view should look as follows: 
+Your view should look as follows:
 
 ``` xml
 <android.support.constraint.motion.MotionLayout
@@ -128,15 +128,15 @@ Next, create a filed called ```scene_01.xml```.
         </ConstraintSet>
 
     </MotionScene>
-``` 
+```
 
 Explanation:
 In order to take control of an animation, you need to define a ```MotionScene```.
 MotionScene is the entity describing the animation. in your case, you'll make a transition from point A to point B on the screen, with a duration of 1 second.
- 
+
 Every point is a ```ConstraintSet```.
 The animation will start at ```@+id/start```, and end at ```@+id/end```.
- 
+
 * Paste the following content inside ```@+id/start```:
 ``` xml
     <Constraint
@@ -147,7 +147,7 @@ The animation will start at ```@+id/start```, and end at ```@+id/end```.
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintTop_toTopOf="parent"/>
-``` 
+```
 
 
 * Paste the following content inside ```@+id/end```:
@@ -160,7 +160,7 @@ The animation will start at ```@+id/start```, and end at ```@+id/end```.
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintTop_toTopOf="parent"/>
-``` 
+```
 
 Your ```scene_01.xml``` file should look like this:
 
@@ -201,7 +201,7 @@ Your ```scene_01.xml``` file should look like this:
     </ConstraintSet>
 
 </MotionScene>
-``` 
+```
 
 
 Explanation:
@@ -226,7 +226,8 @@ mMotionLayout.transitionToStart();
 ```
 
 Your onClick listeners should look like this:
-``` bash
+
+``` java
     animateToEndButton.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -272,7 +273,7 @@ Pay attention to the following changes:
         />
 ```
 *   You have a new scene file : ```scene_02.xml```.
-*   You changed the layoutDescription reference to point to ```@xml/scene_02``` : 
+*   You changed the layoutDescription reference to point to ```@xml/scene_02``` :
 
 ``` xml
 app:layoutDescription="@xml/scene_02"
@@ -307,7 +308,7 @@ Give it a shot by playing with the buttons.
 
 Let's go over some attributes that can be changed during the animation.
 
-*   Changing size: 
+*   Changing size:
     Change layout_height of the end ```ConstraintSet``` to 164dp
 
 ``` xml
@@ -319,42 +320,43 @@ android:layout_height="164dp"
 *   Alpha :
 Add the following attribute to your start ```Constraint```
 
-        ``` xml
-        android:alpha="1.0"
-        ```
-    
+``` xml
+android:alpha="1.0"
+```
+
 Add the following attribute to your end ```Constraint```
-        ``` xml
-        android:alpha="0.5"
-        ```
+
+``` xml
+android:alpha="0.5"
+```
 **Run your app**
 
 *   Rotation :
 Add the following attribute to your start ```Constraint```
 
-        ``` xml
-        android:rotation="0.0"
-        ```
-    
+``` xml
+android:rotation="0.0"
+```
+
 Add the following attribute to your end ```Constraint```
 
-        ``` xml
-        android:rotation="-720"
-        ```
+``` xml
+android:rotation="-720"
+```
 **Run your app**
 
 *   Translation :
 Add the following attribute to your start ```Constraint```
 
-        ``` xml
-        android:translationX="0dp"
-        ```
-    
+``` xml
+android:translationX="0dp"
+```
+
 Add the following attribute to your end ```Constraint```
 
-        ``` xml
-        android:translationX="100dp"
-        ```
+``` xml
+android:translationX="100dp"
+```
 **Run your app**
 
 *   Changing color:
@@ -401,17 +403,17 @@ A quick word about interpolations.
 
 You can define an interpolator for every ```<Transition>```.
 
-* Go ahead and try one of the following : 
+* Go ahead and try one of the following :
 
     <img src="https://raw.githubusercontent.com/maozgal/MotionLayout/master/pics/Screen%20Shot%202018-11-29%20at%2010.39.39%20AM.png">
-    
+
 ## Photos manipulations
 
 Duration: 5:00
 
 Images have a special set of attributes you're going to try and explore.
 
-Go back to your image view settings : 
+Go back to your image view settings :
 
 *   [Download](https://github.com/maozgal/MotionLayout/raw/image_manipulation/app/src/main/res/drawable/icon2.png) this new image and add it to your ```drawable``` folder.
 
@@ -425,7 +427,7 @@ Go back to your image view settings :
         android:layout_height="64dp"/>
 ```
 *   Create a new scene file: ```scene_03.xml```.
-*   Change the layoutDescription reference to point to ```@xml/scene_03``` : 
+*   Change the layoutDescription reference to point to ```@xml/scene_03``` :
 
 ``` xml
 app:layoutDescription="@xml/scene_03"
@@ -477,9 +479,9 @@ app:layoutDescription="@xml/scene_03"
 
 You can also checkout the [image_manipulation](https://github.com/maozgal/MotionLayout/archive/image_manipulation.zip) branch.
 
-* Saturation : 
-    *  In ```scene_03.xml```, add a saturation ```CustomAttribute``` to the start and end ```Constraint```s : 
-    
+* Saturation :
+    *  In ```scene_03.xml```, add a saturation ```CustomAttribute``` to the start and end ```Constraint```s :
+
      ``` xml
     <ConstraintSet android:id="@+id/start">
         <Constraint
@@ -511,50 +513,50 @@ You can also checkout the [image_manipulation](https://github.com/maozgal/Motion
         </Constraint>
     </ConstraintSet>
     ```
-    
+
     **Run your app**
-    
-* Contrast : 
-    *   In ```scene_03.xml```, add a contrast CustomAttribute to the start Constraint : 
-    
+
+* Contrast :
+    *   In ```scene_03.xml```, add a contrast CustomAttribute to the start Constraint :
+
      ``` xml
     <CustomAttribute
                 motion:attributeName="contrast"
                 motion:customFloatValue="1" />
     ```
-    
+
     And your end ```Constraint``` should get:
-    
+
      ``` xml
     <CustomAttribute
                 motion:attributeName="contrast"
                 motion:customFloatValue="1" />
     ```
-    
+
     **Run your app**
-    
-* Warmth : 
-    *   In ```scene_03.xml```, add a warmth CustomAttribute to the start Constraint : 
-    
+
+* Warmth :
+    *   In ```scene_03.xml```, add a warmth CustomAttribute to the start Constraint :
+
      ``` xml
     <CustomAttribute
                 motion:attributeName="warmth"
                 motion:customFloatValue="1" />
     ```
-    
+
     And your end ```Constraint``` should get :
-    
+
      ``` xml
     <CustomAttribute
                 motion:attributeName="warmth"
                 motion:customFloatValue="2" />
     ```
-    
+
     **Run your app**
-    
-* Altering an image with a fade : 
-    *   In ```activity_main.xml```, Add altSrc to your ```ImageFilterView``` : 
-    
+
+* Altering an image with a fade :
+    *   In ```activity_main.xml```, Add altSrc to your ```ImageFilterView``` :
+
     ``` xml
     <android.support.constraint.utils.ImageFilterView
         android:id="@+id/main_iv"
@@ -563,9 +565,9 @@ You can also checkout the [image_manipulation](https://github.com/maozgal/Motion
         android:layout_width="64dp"
         android:layout_height="64dp"/>
     ```
-    
-    *   In ```scene_03.xml```, add a crossfade CustomAttribute to the start and the end Constraint : 
-    
+
+    *   In ```scene_03.xml```, add a crossfade CustomAttribute to the start and the end Constraint :
+
      ``` xml
     <ConstraintSet android:id="@+id/start">
         <Constraint
@@ -597,15 +599,15 @@ You can also checkout the [image_manipulation](https://github.com/maozgal/Motion
         </Constraint>
     </ConstraintSet>
     ```
-    
+
     **Run your app**
-    
+
 ## Swipes
 Duration: 4:00
 
 MotionLayout can handle the transition without any callbacks in your code. You can add interactivity by specifying relevant options in your XML scene.
 Your user will be able to simply swipe the views back and forth to animate them.
-This swipe isn't a simple trigger, but also takes acceleration and velocity into account. 
+This swipe isn't a simple trigger, but also takes acceleration and velocity into account.
 
 Let's try it now.
 
@@ -661,7 +663,7 @@ app:layoutDescription="@xml/scene_04"
 </MotionScene>
 ```
 
-*   Your ```activity_main.xml``` should look like: 
+*   Your ```activity_main.xml``` should look like:
 
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -687,7 +689,7 @@ app:layoutDescription="@xml/scene_04"
 </android.support.constraint.motion.MotionLayout>
 ```
 
-*   Go to your ```scene_04.xml```, and change your ```<Transition>``` into the following : 
+*   Go to your ```scene_04.xml```, and change your ```<Transition>``` into the following :
 
 ``` xml
 <Transition
@@ -715,7 +717,7 @@ The main idea of a Keyframes is to give you a way to manipulate the animation in
 Next, you'll take an ```ImageView``` from bottom to top (centered horizontally), but this time ading a Keyframe that changes the bottom-up linear path into a diagonal path that goes from bottom-end to center-start and then to up-end.
 
 *   Create a new scene file: ```scene_05.xml```.
-*   Change the ```layoutDescription``` reference to point to ```@xml/scene_05``` : 
+*   Change the ```layoutDescription``` reference to point to ```@xml/scene_05``` :
 
 ``` xml
 app:layoutDescription="@xml/scene_05"
@@ -783,7 +785,7 @@ app:layoutDescription="@xml/scene_05"
 
 **Run your app**
 
-Explanation : 
+Explanation :
 *   ```percentX```: Left of the parent.
 *   ```framePosition```: When the action takes place in the timeline.
 *   ```target```: The view being affected by the transition.
@@ -837,7 +839,7 @@ Enlarge your view to twice its size and rotate it -45 degrees at the halfway poi
         motion:percentX="0"
         motion:framePosition="70"
         motion:target="@id/main_iv"/>
-        
+
     <KeyAttribute
         android:scaleX="2"
         android:scaleY="2"
@@ -895,7 +897,7 @@ Duration: 3:00
 You can leverage keyframes to create some cool combinations.
 
 *   Create a new scene file: ```scene_06.xml```.
-*   Change the ```layoutDescription``` reference to point to ```@xml/scene_06``` : 
+*   Change the ```layoutDescription``` reference to point to ```@xml/scene_06``` :
 
 ``` xml
 app:layoutDescription="@xml/scene_06"
@@ -969,7 +971,7 @@ app:layoutDescription="@xml/scene_06"
         app:layout_constraintStart_toEndOf="@+id/animate_to_start_bt"/>
 ```
 
-Also, in ```activity_main.xml```, add : 
+Also, in ```activity_main.xml```, add :
 
 ``` xml
 private void handleViews() {
@@ -993,10 +995,10 @@ private void handleViews() {
     });
 }
 ```
-    
+
 And call ```handleViews()``` from ```onCreate()```.
 
-*   Next, add the following lines itno ```<Transition>``` : 
+*   Next, add the following lines itno ```<Transition>``` :
 
 ``` xml
 <KeyFrameSet>
@@ -1094,7 +1096,7 @@ MotionLayout offers you the ability to transform a linear path between two point
 <img src="https://raw.githubusercontent.com/maozgal/MotionLayout/arcs/pics/arcs.png" width="500">
 
 *   Create a new scene file: ```scene_07.xml```.
-*   Change the ```layoutDescription``` reference to point to ```@xml/scene_07```: 
+*   Change the ```layoutDescription``` reference to point to ```@xml/scene_07```:
 
 ``` xml
 app:layoutDescription="@xml/scene_07"
@@ -1154,7 +1156,7 @@ For this property, you'll want to actually see the path.
 app:showPaths="true"
 ```
 
-* Go to ```scene_06.xml``` and add to the following line to the child ```<Constraint>``` of  ```<ConstraintSet android:id="@+id/start">``` : 
+* Go to ```scene_06.xml``` and add to the following line to the child ```<Constraint>``` of  ```<ConstraintSet android:id="@+id/start">``` :
 
 ``` xml
 motion:pathMotionArc="startHorizontal"
@@ -1181,13 +1183,13 @@ You should end up with the following:
 
 You can also decide that you want your arch to only run for a portion of the path, and not all of it:
 
-* Delete the following line from your end ```<Constraint>```: 
+* Delete the following line from your end ```<Constraint>```:
 
 ``` xml
 motion:layout_constraintStart_toStartOf="parent"
 ```
 
-* Add the following lines to your ```<Transition>``` : 
+* Add the following lines to your ```<Transition>``` :
 
 ``` xml
 <KeyFrameSet>
@@ -1202,7 +1204,7 @@ motion:layout_constraintStart_toStartOf="parent"
 
 **Run your app**
 
-* Change ```pathMotionArc``` to ```flip``` : 
+* Change ```pathMotionArc``` to ```flip``` :
 
 ``` xml
 motion:pathMotionArc="flip"
@@ -1220,7 +1222,7 @@ You'll pass the control of the animation to a ```Seekbar```. This way, you can u
 
 You can control the progress of a ```MotionLayout``` by the ```setProgress()``` method.
 
-*   Get rid of your buttons in ```activity_main.xml```, and add a seekbar instead : 
+*   Get rid of your buttons in ```activity_main.xml```, and add a seekbar instead :
 
 ``` xml
 <android.support.v7.widget.AppCompatSeekBar
@@ -1232,7 +1234,7 @@ You can control the progress of a ```MotionLayout``` by the ```setProgress()``` 
 ```
 
 
-*   On ```MainActivity.java```, change ```handleViews()``` method to : 
+*   On ```MainActivity.java```, change ```handleViews()``` method to :
 
 ``` bash
  private void handleViews() {

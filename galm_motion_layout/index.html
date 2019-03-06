@@ -277,42 +277,30 @@
 </code></pre>
 <p><strong>Run your app</strong></p>
 <ul>
-<li>Alpha :<br>Add the following attribute to your start <code>Constraint</code><pre><code>``` xml
-android:alpha=&#34;1.0&#34;
-```
-</code></pre>
-</li>
+<li>Alpha :<br>Add the following attribute to your start <code>Constraint</code></li>
 </ul>
+<pre><code>android:alpha=&#34;1.0&#34;
+</code></pre>
 <p>Add the following attribute to your end <code>Constraint</code></p>
-<pre><code>    ``` xml
-    android:alpha=&#34;0.5&#34;
-    ```
+<pre><code>android:alpha=&#34;0.5&#34;
 </code></pre>
 <p><strong>Run your app</strong></p>
 <ul>
-<li>Rotation :<br>Add the following attribute to your start <code>Constraint</code><pre><code>``` xml
-android:rotation=&#34;0.0&#34;
-```
-</code></pre>
-</li>
+<li>Rotation :<br>Add the following attribute to your start <code>Constraint</code></li>
 </ul>
+<pre><code>android:rotation=&#34;0.0&#34;
+</code></pre>
 <p>Add the following attribute to your end <code>Constraint</code></p>
-<pre><code>    ``` xml
-    android:rotation=&#34;-720&#34;
-    ```
+<pre><code>android:rotation=&#34;-720&#34;
 </code></pre>
 <p><strong>Run your app</strong></p>
 <ul>
-<li>Translation :<br>Add the following attribute to your start <code>Constraint</code><pre><code>``` xml
-android:translationX=&#34;0dp&#34;
-```
-</code></pre>
-</li>
+<li>Translation :<br>Add the following attribute to your start <code>Constraint</code></li>
 </ul>
+<pre><code>android:translationX=&#34;0dp&#34;
+</code></pre>
 <p>Add the following attribute to your end <code>Constraint</code></p>
-<pre><code>    ``` xml
-    android:translationX=&#34;100dp&#34;
-    ```
+<pre><code>android:translationX=&#34;100dp&#34;
 </code></pre>
 <p><strong>Run your app</strong></p>
 <ul>
@@ -429,7 +417,7 @@ android:translationX=&#34;0dp&#34;
 <p>You can also checkout the <a href="https://github.com/maozgal/MotionLayout/archive/image_manipulation.zip" target="_blank">image_manipulation</a> branch.</p>
 <ul>
 <li>Saturation :<ul>
-<li>In <code>scene_03.xml</code>, add a saturation <code>CustomAttribute</code> to the start and end <code>Constraint</code>s :<br><br></li>
+<li>In <code>scene_03.xml</code>, add a saturation <code>CustomAttribute</code> to the start and end <code>Constraint</code>s :</li>
 </ul>
 <pre><code>&lt;ConstraintSet android:id=&#34;@+id/start&#34;&gt;
     &lt;Constraint
@@ -463,7 +451,7 @@ android:translationX=&#34;0dp&#34;
 </code></pre>
 <strong>Run your app</strong></li>
 <li>Contrast :<ul>
-<li>In <code>scene_03.xml</code>, add a contrast CustomAttribute to the start Constraint :<br><br></li>
+<li>In <code>scene_03.xml</code>, add a contrast CustomAttribute to the start Constraint :</li>
 </ul>
 <pre><code>&lt;CustomAttribute
             motion:attributeName=&#34;contrast&#34;
@@ -475,7 +463,7 @@ And your end <code>Constraint</code> should get:<pre><code>&lt;CustomAttribute
 </code></pre>
 <strong>Run your app</strong></li>
 <li>Warmth :<ul>
-<li>In <code>scene_03.xml</code>, add a warmth CustomAttribute to the start Constraint :<br><br></li>
+<li>In <code>scene_03.xml</code>, add a warmth CustomAttribute to the start Constraint :</li>
 </ul>
 <pre><code>&lt;CustomAttribute
             motion:attributeName=&#34;warmth&#34;
@@ -487,7 +475,7 @@ And your end <code>Constraint</code> should get :<pre><code>&lt;CustomAttribute
 </code></pre>
 <strong>Run your app</strong></li>
 <li>Altering an image with a fade :<ul>
-<li>In <code>activity_main.xml</code>, Add altSrc to your <code>ImageFilterView</code> :<br><br></li>
+<li>In <code>activity_main.xml</code>, Add altSrc to your <code>ImageFilterView</code> :</li>
 </ul>
 <pre><code>&lt;android.support.constraint.utils.ImageFilterView
     android:id=&#34;@+id/main_iv&#34;
@@ -497,7 +485,7 @@ And your end <code>Constraint</code> should get :<pre><code>&lt;CustomAttribute
     android:layout_height=&#34;64dp&#34;/&gt;
 </code></pre>
 <ul>
-<li>In <code>scene_03.xml</code>, add a crossfade CustomAttribute to the start and the end Constraint :<br><br></li>
+<li>In <code>scene_03.xml</code>, add a crossfade CustomAttribute to the start and the end Constraint :</li>
 </ul>
 <pre><code>&lt;ConstraintSet android:id=&#34;@+id/start&#34;&gt;
     &lt;Constraint
@@ -750,7 +738,7 @@ And your end <code>Constraint</code> should get :<pre><code>&lt;CustomAttribute
         motion:percentX=&#34;0&#34;
         motion:framePosition=&#34;70&#34;
         motion:target=&#34;@id/main_iv&#34;/&gt;
-        
+
     &lt;KeyAttribute
         android:scaleX=&#34;2&#34;
         android:scaleY=&#34;2&#34;
