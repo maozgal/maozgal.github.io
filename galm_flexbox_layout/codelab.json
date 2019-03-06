@@ -1,0 +1,22 @@
+{
+  "environment": "web",
+  "source": "flexbox_layout.md",
+  "format": "html",
+  "prefix": "../../",
+  "mainga": "UA-49880327-14",
+  "updated": "2019-03-05T18:47:01+02:00",
+  "id": "galm_flexbox_layout",
+  "duration": 70,
+  "title": "Android FlexboxLayout 101",
+  "author": "Gal Maoz",
+  "summary": "Flexbox Workshop",
+  "theme": "",
+  "status": null,
+  "category": [
+    "layouts"
+  ],
+  "tags": [
+    "android"
+  ],
+  "url": "galm_flexbox_layout"
+}
