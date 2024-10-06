@@ -4,4 +4,4 @@
 
 * FlexboxLayout codelab - [https://maozgal.github.io/galm_flexbox_layout](https://maozgal.github.io/galm_flexbox_layout/#0)
 
-* Applinks codelab - [https://github.com/maozgal/maozgal.github.io/blob/master/deeplinks-applinks/index.html](https://github.com/maozgal/maozgal.github.io/blob/master/deeplinks-applinks/index.html)
+* Applinks codelab - [https://maozgal.github.io/deeplinks-applinks/#0](https://maozgal.github.io/deeplinks-applinks/#0)
