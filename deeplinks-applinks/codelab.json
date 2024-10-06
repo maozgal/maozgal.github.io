@@ -1,0 +1,20 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2024-10-05T21:21:10Z",
+  "id": "deeplinks-applinks",
+  "duration": 0,
+  "title": "Fantastic Deeplinks and how avoid them",
+  "authors": "Gal Maoz",
+  "summary": "In this codelab, we explore both the vulnerability of deeplinks and strategies for safeguarding against such compromises.",
+  "source": "1xaKxohxGqKFa2kCHa1nRmIfJ-njF_Y7jPdvfiz1B-aU",
+  "theme": "android",
+  "status": null,
+  "category": [
+    "android"
+  ],
+  "tags": [],
+  "url": "deeplinks-applinks"
+}

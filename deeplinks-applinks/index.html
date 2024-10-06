@@ -1,0 +1,205 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Fantastic Deeplinks and how avoid them</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14" ga4id=""></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  codelab-ga4id=""
+                  id="deeplinks-applinks"
+                  title="Fantastic Deeplinks and how avoid them"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="0">
+        <p>In this Codelab, you will gain insights into how a malicious actor might exploit the deep linking system of your Android application to access and compromise client data. Subsequently, you will learn methods to safeguard against such vulnerabilities while maintaining the functionality of deep linking.</p>
+<h3 is-upgraded>Prerequisite:</h3>
+<ul>
+<li>adb cli: (run the following if you don&#39;t have adb installed on your terminal).</li>
+</ul>
+<pre><code>brew install android-platform-tools</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Process Overview" duration="0">
+        <p>An attacker may analyze your code to identify an Activity that is exposed to external interactions via deeplinks and could be exploited. They might then create their own application with an Activity configured to listen for the same deeplink path and scheme as yours.</p>
+<p>When your marketing team sends a deeplink to this Activity, the operating system will prompt the user to choose between the two apps capable of handling the deeplink. If the attacker has successfully mimicked your app, their app will appear identical to yours in the app chooser. As a result, there is a 50% chance that users might select the attacker&#39;s app. This scenario is particularly concerning if the Activity involves collecting sensitive information, such as credit card details.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Find The Code" duration="0">
+        <p>To demonstrate how an attacker might steal your deep links and compromise client data by extracting an APK from a device, you can follow these steps:</p>
+<h3 is-upgraded>Download your app</h3>
+<ul>
+<li>Go to the Google Play Store web page of your app and download it.</li>
+<li>Look at the URL in your browser. The app package name is part of the URL under the <strong>id</strong> parameter. For example, in a URL like https://play.google.com/store/apps/details?<strong>id=com.example.app</strong>, com.example.app is the package name.</li>
+</ul>
+<h3 is-upgraded>Locate the APK on the Device</h3>
+<ul>
+<li>Connect your Android device to your computer using USB.</li>
+<li>Use the following adb command to locate the APK.</li>
+</ul>
+<pre><code>adb shell pm path com.example.app</code></pre>
+<ul>
+<li>This command will probably return several paths. we are looking for one similar to <strong>/data/app/com.example.app-1/base.apk. </strong>(look for the base.apk)</li>
+</ul>
+<h3 is-upgraded>Pull the APK from the Device to Your Computer</h3>
+<ul>
+<li>In order to start examining the code you will need to coly the file into your computer. do this the the following command</li>
+</ul>
+<pre><code>adb pull /data/app/com.example.app-1/base.apk ~/Desktop/com.example.app.apk</code></pre>
+<h3 is-upgraded>Unzip the APK</h3>
+<ul>
+<li>An apk file is just a zip file. you can unzip it to see its content with the following command<br></li>
+</ul>
+<pre><code>unzip ~/Desktop/com.example.app.apk -d ~/Desktop/com.example.app_extracted</code></pre>
+<p>Note:</p>
+<p>- This process is typically used for reverse engineering or security testing. However, be aware that extracting and analyzing APKs without permission may violate terms of service and legal agreements. Always ensure you have the right to analyze the APK.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Find a vulnerable Actvity" duration="0">
+        <p>After extracting the APK file, here&#39;s how you can analyze it to find potentially vulnerable activities that might allow an attacker to steal your deep links:</p>
+<h3 is-upgraded>Open the APK in Android Studio</h3>
+<p>Drag the APK file into an open Android Studio project,</p>
+<p>Android Studio will decompile the APK, allowing you to view the contents, including the AndroidManifest.xml file.</p>
+<h3 is-upgraded>Locate the AndroidManifest.xml</h3>
+<p>In the APK Explorer or Project view, navigate to the root of the project and find the AndroidManifest.xml file.</p>
+<h3 is-upgraded>Search for Activitys with Intent Filters</h3>
+<ul>
+<li>​​Look for &lt;activity&gt; elements that contain an &lt;intent-filter&gt; with specific actions, categories, and data attributes.</li>
+<li>Specifically, you&#39;re interested in activities that have an intent filter with the following attributes:<br></li>
+</ul>
+<pre><code>&lt;activity android:name=&#34;.YourActivityName&#34; ... &gt;
+    &lt;intent-filter&gt; 
+        &lt;action android:name=&#34;android.intent.action.VIEW&#34; /&gt; 
+        &lt;category android:name=&#34;android.intent.category.BROWSABLE&#34; /&gt;
+        &lt;data 
+            android:scheme=&#34;yourapp&#34;
+            android:host=&#34;page_a&#34; /&gt; 
+    &lt;/intent-filter&gt; 
+&lt;/activity&gt;</code></pre>
+<h3 is-upgraded>Understanding the Elements</h3>
+<ul>
+<li><strong>&lt;action android:name=&#34;android.intent.action.VIEW&#34; /&gt;:</strong> This action indicates that the activity can be started to display a particular piece of data to the user. It is often used for handling web URLs, deep links, or custom app links.</li>
+<li><strong>&lt;category android:name=&#34;android.intent.category.BROWSABLE&#34; /&gt;:</strong> This category indicates that the activity can be triggered by a web browser, making it accessible through a deep link from an external app or browser.</li>
+<li><strong>&lt;data android:scheme=&#34;yourapp&#34; android:host=&#34;page_a&#34; /&gt;:</strong></li>
+<li><strong>scheme:</strong> This defines the protocol part of the deep link URL (e.g., https, yourapp).</li>
+<li><strong>host:</strong> This specifies the domain or subpath within the deep link (e.g., page_a). Together with the scheme, it defines the structure of the deep link URL.</li>
+<li>So, to open <code>YourActivityName,</code> all you need to do is redirect to the following deeplink: <strong>yourapp://page_a</strong>.</li>
+</ul>
+<aside class="warning"><p><strong>Caution: </strong>If an attacker can craft a URL that matches this scheme and host, they might be able to trigger the activity and gain unauthorized access to the app&#39;s resources or sensitive data, depending on what the activity does.</p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Build the ‘Attacker&#39; app." duration="0">
+        <p>Once you identify the target activity you wish to exploit, open Android Studio and create a new project.</p>
+<p>In your project, create an activity with an intent filter that mirrors the target activity.</p>
+<p>Make sure the <strong>scheme</strong> and <strong>host</strong> match exactly with the target activity. For example, if the intent filter of the target activity is defined like this:</p>
+<pre><code>&lt;activity android:name=&#34;.YourActivityName&#34; ... &gt;
+    &lt;intent-filter&gt; 
+        &lt;action android:name=&#34;android.intent.action.VIEW&#34; /&gt; 
+        &lt;category android:name=&#34;android.intent.category.BROWSABLE&#34; /&gt;
+        &lt;data 
+            android:scheme=&#34;yourapp&#34;
+            android:host=&#34;page_a&#34; /&gt; 
+    &lt;/intent-filter&gt; 
+&lt;/activity&gt;</code></pre>
+<p>You must define yours in the same way.</p>
+<p>This is the key to the entire compromise. When the OS processes a deep link, it searches all installed apps for those that match the <strong>scheme</strong> and <strong>host</strong> specified in the link.</p>
+<p>If only one app matches, it will launch that app immediately. However, if multiple apps match, the OS will display a chooser, allowing the user to pick which app to open. If the attacker can convince the user that their app is the legitimate one, they can hijack the deep link. For instance, the user may receive a deep link via SMS from a real company, saying their password is about to expire. If the attacker has created a convincing fake app, the user might select it and unknowingly enter their real password.</p>
+<p>This is the process we aim to demonstrate.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Execute the deeplink." duration="0">
+        <p>At this point, you should have a functioning project with an Activity designed to mimic the original one. Now, it&#39;s time to test it out.</p>
+<p>Connect your device to your computer and run the following command:</p>
+<pre><code>adb shell am start -a android.intent.action.VIEW -d &#34;&lt;scheme&gt;://&lt;host&gt;&#34;</code></pre>
+<p>In our example, you would run this:</p>
+<pre><code>adb shell am start -a android.intent.action.VIEW -d &#34;yourapp://page_a&#34;</code></pre>
+<p>If everything works as expected, you should see a chooser appear, like this:</p>
+<p class="image-container"><img style="width: 377.56px" src="img/91999f49019eb618.jpeg"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Refine the Attack" duration="0">
+        <p>You&#39;ve probably noticed that your app doesn&#39;t look convincing enough for the user to confuse it with the targeted app. To make the deception more effective, attackers typically use the same icon and string resources as the app they aim to imitate.</p>
+<p>Let&#39;s do just that.</p>
+<p><strong>Icon:</strong></p>
+<ol type="1" start="1">
+<li>Open the manifest file you found earlier in the &#34;Locate the AndroidManifest.xml&#34; section.</li>
+<li>Find the <strong>&lt;application&gt;</strong> tag and look for the <strong>android:icon</strong> attribute.</li>
+<li>Copy the value of the icon attribute from there and paste it into your project.</li>
+<li>Set your <strong>&lt;application&gt; </strong>tag&#39;s <strong>android:icon </strong>attribute to the new icon you just added.</li>
+</ol>
+<p><strong>Label:</strong></p>
+<ol type="1" start="1">
+<li>Open the same manifest file.</li>
+<li>Find the <strong>&lt;application&gt; </strong>tag and locate the <strong>android:label</strong> attribute.</li>
+<li>Copy the string value and paste it into your project.</li>
+<li>Set your <strong>&lt;application&gt;</strong> tag&#39;s <strong>android:label</strong> to the string you just added.</li>
+</ol>
+<p>For example:</p>
+<pre><code>&lt;application
+   android:allowBackup=&#34;true&#34;
+   android:dataExtractionRules=&#34;@xml/data_extraction_rules&#34;
+   android:fullBackupContent=&#34;@xml/backup_rules&#34;
+   android:icon=&#34;@mipmap/ic_launcher&#34;
+   android:label=&#34;@string/app_name&#34;
+   ...
+/&gt;</code></pre>
+<p>Now, test it by executing the deep link. Your app should look almost identical to the original, making it difficult for the user to tell if it&#39;s legitimate or not.</p>
+<p class="image-container"><img style="width: 379.90px" src="img/af05a98ba0beea7f.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Resolve the Issue" duration="0">
+        <p>At this point, there&#39;s a 50% chance that the user might click on the attacker&#39;s app, thinking it&#39;s the legitimate one (possibly assuming there&#39;s an issue with their device showing duplicate entries in the app chooser). The attacker can make the fake app look very similar to the original, leading the user to trust it enough to input their sensitive data, which will be sent directly to the attacker.</p>
+<p>So, what can we do to prevent this?</p>
+<p>Google introduced a solution called <a href="https://developer.android.com/training/app-links" target="_blank">App Links</a>. The primary goal of this mechanism is to stop the user from having to choose between apps. In fact, it eliminates the app chooser entirely, so the user can&#39;t accidentally select the wrong app.</p>
+<h2 is-upgraded>How does the App Links process work?</h2>
+<p>Whenever a user clicks a link verified to be associated with your app, the link will automatically open directly in your app, instead of launching the browser.</p>
+<h2 is-upgraded>How does verification work?</h2>
+<p>When the OS detects the <strong>android:autoVerify=&#34;true&#34;</strong> parameter in the manifest during installation, it checks the associated link&#39;s host for a file named <strong>assetlinks.json</strong>.</p>
+<p>The <strong>assetlinks.json</strong> file is a JSON document that contains the <strong>SHA256</strong> fingerprints of the apps permitted to handle links from that host. If the fingerprint of the installed app matches one of the fingerprints in the <strong>assetlinks.json</strong> file, the verification is successful. From then on, the OS will always open that link in the app without redirecting it to the browser.</p>
+<p class="image-container"><img style="width: 601.70px" src="img/9651b8ab9c072e35.jpeg"><br><br><br></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
